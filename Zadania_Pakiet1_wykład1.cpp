@@ -2,8 +2,11 @@
 using namespace std;
 
 int main() {
-    int a;
-    cout << "Podaj dlugosc boku dyskietki: ";
+    float a,h;
+    cout <<"Podaj dlugosc podstawy Nachos'a: ";
     cin >> a;
-    cout << "Pole opakowania wynosi " << a * a << " a pojemnosc dyskietki wynosi 1,44 MB";
+    cout <<"Podaj dlugosc wysokosci Nachos'a: ";
+    cin >> h;
+
+    cout << "Pole Nachos'a wynosi " << (a * h) / 2;
 }
