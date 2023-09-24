@@ -2,17 +2,8 @@
 using namespace std;
 
 int main() {
-    int a, b;
-
-    cout << "Podaj liczbe a: ";
+    int a;
+    cout << "Podaj dlugosc boku dyskietki: ";
     cin >> a;
-    cout << "Podaj liczbe b: ";
-    cin >> b;
-
-    if ((a % b) == 0) {
-        cout <<"Liczba "<< a <<" jest podzielna przez " << b;
-    }
-    else {
-        cout <<"Liczba "<< a <<" nie jest podzielna przez "<< b;
-    }
+    cout << "Pole opakowania wynosi " << a * a << " a pojemnosc dyskietki wynosi 1,44 MB";
 }
