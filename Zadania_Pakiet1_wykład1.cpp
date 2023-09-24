@@ -2,13 +2,17 @@
 using namespace std;
 
 int main() {
-    int x, y;
+    int a, b;
 
-    cout << "Podaj liczbe x: ";
-    cin >> x;
-    cout << "Podaj liczbe y: ";
-    cin >> y;
+    cout << "Podaj liczbe a: ";
+    cin >> a;
+    cout << "Podaj liczbe b: ";
+    cin >> b;
 
-    int result = x % y;
-    cout <<"Reszta z dzielenia liczby "<< x <<" przez "<< y <<" to: "<< result;
+    if ((a % b) == 0) {
+        cout <<"Liczba "<< a <<" jest podzielna przez " << b;
+    }
+    else {
+        cout <<"Liczba "<< a <<" nie jest podzielna przez "<< b;
+    }
 }
