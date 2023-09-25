@@ -30,7 +30,7 @@ int main() {
 			cin >> num1;
 			cout <<"Podaj dlugosc wysokosci: ";
 			cin >> num2;
-			cout <<"Pole kwadratu wynosi " << (num1 * num2)/2 <<" cm^2";
+			cout <<"Pole trojkata wynosi " << (num1 * num2)/2 <<" cm^2";
 		}
 	}
 	else if (option >= 4 && option <= 6) {
