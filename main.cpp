@@ -1,7 +1,10 @@
 ﻿#include <iostream>
 
 int main() {
-	for (int i = 20; i > 9; i--)
-	    std::cout << i << std::endl;
+	int i = 10;
+	while (i < 21) {
+		std::cout << i << std::endl;
+		i++;
+	}
 	return 0;
 }
