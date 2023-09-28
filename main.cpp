@@ -2,6 +2,6 @@
 
 int main() {
 	for (int i = 1; i < 1000; i *= 2)
-		std::cout << i << std::endl;
+		std::cout << i <<" | ";
 	return 0;
 }
