@@ -2,11 +2,22 @@
 
 int main() {
 	int num = 0;
-	std::cout << "Podaj liczbe dodatnia: ";
-	std::cin >> num;
+	int orginal = 0;
 
-	for (int i = 1; i <= num; i++)
-		if(num% i == 0)
-		   std::cout << i <<" | ";
+	std::cout << "Podaj liczbe naturalna: ";
+	std::cin >> num;
+	orginal = num;
+
+	for (int i = 2; num != 1;) {
+		if (num % i == 0){
+			num/=i;
+			std::cout << i <<" ";
+			i = 2;
+			continue;
+		}
+		i++;
+	}
+	std::cout << "= " <<orginal;
+
 	return 0;
 }
