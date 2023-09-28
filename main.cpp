@@ -1,11 +1,9 @@
 ﻿#include <iostream>
 
 int main() {
-	int num = 0;
-	std::cout << "Podaj liczbe dodatnia, wieksza od 1: ";
-	std::cin >> num;
-
-	for (int i = 2; i <= num ; i*=2)
-			std::cout << i <<" | ";
+	for (int i = 1; i <= 100; i++) {
+		if (i == 23) break;
+		std::cout << i << std::endl;
+	}	
 	return 0;
 }
