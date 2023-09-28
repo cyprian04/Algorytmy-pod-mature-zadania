@@ -1,9 +1,12 @@
 ﻿#include <iostream>
 
 int main() {
-	for (int i = 1; i <= 100; i++) {
-		if (i == 23) break;
-		std::cout << i << std::endl;
-	}	
+	int num = 0;
+	std::cout << "Podaj liczbe dodatnia: ";
+	std::cin >> num;
+
+	for (int i = 1; i <= num; i++)
+		if(num% i == 0)
+		   std::cout << i <<" | ";
 	return 0;
 }
