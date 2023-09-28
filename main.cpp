@@ -2,26 +2,13 @@
 
 int main() {
 	int num = 0;
-	int handler = 0;
-	bool isPrime = true;
-
-	std::cout << "Podaj liczbe naturalna: ";
+	int digit = 0;
+	std::cout << "Podaj liczbe: ";
 	std::cin >> num;
 
-	for (int i = 1; i <= num ;i++){ 
-		if (num % i == 0) {
-
-			handler++;
-			if (handler > 2) {
-				isPrime = false;
-				break;
-			}
-		}
+	for (int handler = 10; num != 0; num -= digit, num /= 10){
+		digit = num % handler;
+		std::cout << digit * digit << " | ";
 	}
-	if (isPrime)
-		std::cout <<"Jest pierwsza";
-	else
-		std::cout << "NIE jest pierwsza";
-
 	return 0;
 }
