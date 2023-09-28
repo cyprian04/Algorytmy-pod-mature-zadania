@@ -2,7 +2,7 @@
 
 int main() {
 	int num = 0;
-	std::cout << "Podaj liczbe dodatnia, wieksza od 1: ";
+	std::cout << "Podaj liczbe dodatnia: ";
 	std::cin >> num;
 
 	for (int i = 1; i <= num ; i++)
