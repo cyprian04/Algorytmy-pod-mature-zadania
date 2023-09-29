@@ -2,19 +2,15 @@
 
 int main() {
 	int num = 0;
-	bool isPrime = true;
-
-	std::cout << "Podaj liczbe naturalna: ";
+	int digit = 0;
+	std::cout << "Podaj liczbe: ";
 	std::cin >> num;
 
-	for (int i = 2; i < num;i++) 
-		if (num % i == 0)
-			isPrime = false;
-
-	if (isPrime)
-		std::cout << "Jest pierwsza";
-	else
-		std::cout << "NIE jest pierwsza";
-
+	while (num != 0){
+		digit = num % 10;
+		std::cout << digit * digit << " | ";
+		num -= digit;
+		num /= 10;
+	}
 	return 0;
 }
