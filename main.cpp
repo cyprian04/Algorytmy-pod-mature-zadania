@@ -1,21 +1,26 @@
 ﻿#include <iostream>
-// uroki robienia zadań po 10 godzinach w szkole ;), poprawione
+
 int main() {
 	int num = 0;
-	bool isPrime = true;
-
+	int digit = 0;
+	int even = 0;
+	int odd = 0;
 	std::cout << "Podaj liczbe naturalna: ";
 	std::cin >> num;
 
-	for (int i = 2; i < num; i++)
-		if (num % i == 0) {
-			isPrime = false;
-			break;
-		}
-	if (isPrime)
-		std::cout << "Jest pierwsza";
-	else
-		std::cout << "NIE jest pierwsza";
+	while (num != 0) {
+		digit = num % 10;
+		if (digit % 2 == 0) even++;
+		else odd++;
+		num -= digit;
+		num /= 10;
+	}
 
+	if(even > odd)
+		std::cout << "wiecej jest parzystych";
+	else if (even < odd)
+		std::cout << "wiecej jest nieparzystych";
+	else
+		std::cout << "jest tyle samo parzystch co nieparzystych";
 	return 0;
 }
