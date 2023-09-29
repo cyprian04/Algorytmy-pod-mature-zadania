@@ -1,14 +1,15 @@
 ﻿#include <iostream>
 
 int main() {
-	int num = 0;
-	int digit = 0;
-	std::cout << "Podaj liczbe: ";
-	std::cin >> num;
+	int sum = 0;
 
-	for (int handler = 10; num != 0; num -= digit, num /= 10){
-		digit = num % handler;
-		std::cout << digit * digit << " | ";
+	for (int i = 1; i <= 1000; i++) {
+		if ((i % 5 == 0) && (i % 3 == 0)) {
+			sum += i;
+			std::cout << i << std::endl;
+		}
 	}
+	std::cout << "Suma: " << sum << std::endl;
+
 	return 0;
 }
