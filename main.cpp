@@ -1,15 +1,20 @@
 ﻿#include <iostream>
 
 int main() {
-	int sum = 0;
+	int num = 0;
+	bool isPrime = true;
 
-	for (int i = 1; i <= 1000; i++) {
-		if ((i % 5 == 0) && (i % 3 == 0)) {
-			sum += i;
-			std::cout << i << std::endl;
-		}
-	}
-	std::cout << "Suma: " << sum << std::endl;
+	std::cout << "Podaj liczbe naturalna: ";
+	std::cin >> num;
+
+	for (int i = 2; i < num;i++) 
+		if (num % i == 0)
+			isPrime = false;
+
+	if (isPrime)
+		std::cout << "Jest pierwsza";
+	else
+		std::cout << "NIE jest pierwsza";
 
 	return 0;
 }
