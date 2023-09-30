@@ -1,13 +1,11 @@
 ﻿#include <iostream>
-
 int main() {
-	int array[10];
+	int num = 0;
+	std::cout << "Podaj ciag liczb, jesli chcesz przestac wprowadz 0\n";
 
-	for (int i = 0; i < 10; i++) {
-		std::cout << "Podaj liczbe numer " <<i+1<<": ";
-		std::cin >> array[i];
-	}	
-	for (int i = 9; i >= 0 ; i--)
-		std::cout << array[i] <<" ";
+	while (std::cin >> num) {
+		if (num == 0) break;
+		std::cout<<"Potega liczby "<< num <<" to " << num * num << std::endl;
+	}
 	return 0;
 }
