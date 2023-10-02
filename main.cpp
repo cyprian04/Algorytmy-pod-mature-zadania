@@ -1,26 +1,21 @@
 ﻿#include <iostream>
-#include <string>
-#include <map> // zastoswanie mapy do przechowywania klucza(znaku), wartości int(w tym przypadku liczy wystąpień tego znaku)
 
 int main() {
-	std::map<char, int> signs;
-	std::string text;
-	std::string orginal;
+    std::string pesel;
+    pesel.resize(11);
+    int weight[11] = { 1, 3, 7, 9, 1, 3, 7, 9, 1, 3, 1};
+    int Sum = 0;
+    int change = 0;
 
-	std::cout << "Podaj napis: ";
-	std::getline(std::cin,text);
-	orginal = text;
+    for (int i = 0; i < 11; i++) {
+        std::cout << "Podaj " << i + 1 << " cyfre peselu: ";
+        std::cin >> pesel[i];
+        Sum += pesel[i] * weight[i];
+    }
+    change = Sum % 10;
 
-	for (auto &s: text)
-		if (s != ' ') {
-			if (s >= 'A' && s <= 'Z') 
-				s += 'a' - 'A';// jeśli są duże to konwersja na małe
-			signs[s]++;
-		}
-
-	std::cout << "Dla napisu: " << orginal << std::endl;
-	for (const auto& s : signs)
-		std::cout << s.first << " wystapilo: " << s.second << std::endl;
-
-	return 0;
+    if (change == 0) 
+        std::cout << "Pesel jest poprawny :)";
+    else
+        std::cout << "Pesel nie jest poprawny :(";
 }
