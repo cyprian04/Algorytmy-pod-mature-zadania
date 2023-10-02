@@ -1,12 +1,26 @@
 ﻿#include <iostream>
+#include <string>
+#include <map> // zastoswanie mapy do przechowywania klucza(znaku), wartości int(w tym przypadku liczy wystąpień tego znaku)
+
 int main() {
-	int count = 0;
+	std::map<char, int> signs;
 	std::string text;
-	std::cout << "Podaj wyraz: ";
-	std::cin >> text;
-	for (size_t i = 0; i < text.length(); i++)
-		if (text[i] == 'a' || text[i] == 'A')
-			count++;
-	std::cout << "Wyraz " <<text<<" ma "<< count <<" a";
+	std::string orginal;
+
+	std::cout << "Podaj napis: ";
+	std::getline(std::cin,text);
+	orginal = text;
+
+	for (auto &s: text)
+		if (s != ' ') {
+			if (s >= 'A' && s <= 'Z') 
+				s += 'a' - 'A';// jeśli są duże to konwersja na małe
+			signs[s]++;
+		}
+
+	std::cout << "Dla napisu: " << orginal << std::endl;
+	for (const auto& s : signs)
+		std::cout << s.first << " wystapilo: " << s.second << std::endl;
+
 	return 0;
 }
