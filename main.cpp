@@ -1,21 +1,35 @@
 ﻿#include <iostream>
-
+#include <cmath>
 int main() {
-    std::string pesel;
-    pesel.resize(11);
-    int weight[11] = { 1, 3, 7, 9, 1, 3, 7, 9, 1, 3, 1};
-    int Sum = 0;
-    int change = 0;
+	int shiftCount = 0;
+	int currentShift = 0;
+	int size = 0;
+	int* arr = nullptr;
 
-    for (int i = 0; i < 11; i++) {
-        std::cout << "Podaj " << i + 1 << " cyfre peselu: ";
-        std::cin >> pesel[i];
-        Sum += pesel[i] * weight[i];
-    }
-    change = Sum % 10;
+	std::cout << "Podaj ilosc przesuniec: ";
+	std::cin >> shiftCount;
+	std::cout << "Podaj rozmiar tablicy: ";
+	std::cin >> size;
+	arr = new int[size];
 
-    if (change == 0) 
-        std::cout << "Pesel jest poprawny :)";
-    else
-        std::cout << "Pesel nie jest poprawny :(";
+	for (int i = 0; i < size; i++) {
+		std::cout <<"Podaj liczbe do tablicy: ";
+		std::cin >> arr[i];
+	}
+
+	for (int i = 0; i < size - 1 && currentShift < shiftCount;) {
+		std::swap(arr[i + 1], arr[i]);
+		if (i == size - 2) {
+			i = 0;
+			currentShift++;
+			continue;
+		}
+		i++;
+	}
+
+	for (int i = 0; i < size; i++)
+		std::cout << arr[i] <<", ";
+
+	delete[] arr;
+	return 0;
 }
