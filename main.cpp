@@ -1,20 +1,27 @@
 ﻿#include <iostream>
+
 int main() {
 	int num = 0;
-	bool isPrime = true;
-
+	int digit = 0;
+	int total = 0;
 	std::cout << "Podaj liczbe naturalna: ";
 	std::cin >> num;
 
-	for (int i = 2; i < num; i++)
-		if (num % i == 0) {
-			isPrime = false;
-			break;
-		}
-	if (isPrime && num != 1)
-		std::cout << "Jest pierwsza";
-	else
-		std::cout << "NIE jest pierwsza";
+	while (num != 0) {
+		bool isPrime = true;
+		digit = num % 10;
+
+		for (int i = 2; i < digit; i++)
+			if (digit % i == 0) {
+				isPrime = false;
+				break;
+			}
+
+		if (isPrime && digit != 1) total++;
+		num -= digit;
+		num /= 10;
+	}
+	std::cout << total;
 
 	return 0;
 }
