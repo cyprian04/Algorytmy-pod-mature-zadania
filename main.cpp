@@ -1,35 +1,31 @@
 ﻿#include <iostream>
-#include <cmath>
+// alokacja na heap'ie, zrozumiałem że wartości mają być pod koniec dlatego jest 2 for :)
 int main() {
-	int shiftCount = 0;
-	int currentShift = 0;
+	int* nums = nullptr;
 	int size = 0;
-	int* arr = nullptr;
 
-	std::cout << "Podaj ilosc przesuniec: ";
-	std::cin >> shiftCount;
-	std::cout << "Podaj rozmiar tablicy: ";
+	std::cout << "Podaj ile liczb chcesz sprawdzic, ktore sa liczbami pierwszymi: ";
 	std::cin >> size;
-	arr = new int[size];
+	nums = new int[size];
 
 	for (int i = 0; i < size; i++) {
-		std::cout <<"Podaj liczbe do tablicy: ";
-		std::cin >> arr[i];
+		std::cout << "Podaj liczbe :";
+		std::cin >> nums[i];
 	}
 
-	for (int i = size - 1; i > 0 && currentShift < shiftCount;) {
-		std::swap(arr[i - 1], arr[i]);
-		if (i == 1) {
-			i = size - 1;
-			currentShift++;
-			continue;
-		}
-		i--;
+	for (int i = 0; i < size; i++) {
+		bool isPrime = true;
+		for (int j = 2; j < nums[i]; j++)
+			if (nums[i] % j == 0) {
+				isPrime = false;
+				break;
+			}
+		if (isPrime && nums[i] != 1)
+			std::cout << nums[i] << " jest pierwsza\n";
+		else
+			std::cout << nums[i] << " NIE jest pierwsza\n";
 	}
-
-	for (int i = 0; i < size; i++)
-		std::cout << arr[i] <<", ";
-
-	delete[] arr;
+	delete[] nums; // usuniecie z heapa
+	nums = nullptr;
 	return 0;
 }
