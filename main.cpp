@@ -1,24 +1,20 @@
 ﻿#include <iostream>
 
-void IsPrime(const int num) {
-    bool isPrime = true;
-    for (int i = 2; i < num; i++)
-        if (num % i == 0) {
-            isPrime = false;
-            break;
-        }
-
-    if (isPrime && num != 1)
-        std::cout << "Jest pierwsza";
-    else
-        std::cout << "NIE jest pierwsza";
+int CountThePower(int num, int pow) {
+    int result = 1;
+    for (int i = 0; i < pow; i++)
+         result *= num;
+    return result;
 }
 
 int main() {
     int num = 0;
+    int pow = 0;
+
     std::cout << "Podaj liczbe: ";
     std::cin >> num;
-    IsPrime(num);
-
+    std::cout << "Podaj potege: ";
+    std::cin >> pow;
+    std::cout << num << "podniesione do potegi " << pow << " wynosi: " << CountThePower(num, pow);
     return 0;
 }
