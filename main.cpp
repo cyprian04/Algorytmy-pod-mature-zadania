@@ -1,13 +1,17 @@
 ﻿#include <iostream>
 
-int CurrentAge(int year_in) {
-	return 2023 - year_in;
+bool dividedBy(int value) {
+	return (value % 3 == 0) && (value % 5 == 0);
 }
 
 int main() {
-	int year;
-	std::cout << "Podaj rok urodzenia: ";
-	std::cin >> year;
-	std::cout << "twoj wiek to: " << CurrentAge(year);
+	int num;
+	std::cout << "Podaj liczbe: ";
+	std::cin >> num;
+
+	if (dividedBy(num))
+		std::cout << "Jest podzielna na 3 i 5";
+	else
+		std::cout << "NIE jest podzielna na 3 i 5";
 	return 0;
 }
