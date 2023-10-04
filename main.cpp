@@ -1,20 +1,17 @@
 ﻿#include <iostream>
 
-int CountThePower(int num, int pow) {
-    int result = 1;
-    for (int i = 0; i < pow; i++)
-         result *= num;
+long long CountTheFactorial(int num) {
+    long long result = 1;
+    for (int i = num; i > 0; i--)
+         result*=i;
     return result;
 }
 
 int main() {
-    int num = 0;
-    int pow = 0;
+    int factorial = 0;
 
-    std::cout << "Podaj liczbe: ";
-    std::cin >> num;
-    std::cout << "Podaj potege: ";
-    std::cin >> pow;
-    std::cout << num << "podniesione do potegi " << pow << " wynosi: " << CountThePower(num, pow);
+    std::cout << "Podaj silnie do wyliczenia: ";
+    std::cin >> factorial;
+    std::cout << factorial << "! wynosi: " << CountTheFactorial(factorial);
     return 0;
 }
