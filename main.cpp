@@ -1,7 +1,13 @@
 ﻿#include <iostream>
 
+int CurrentAge(int year_in) {
+	return 2023 - year_in;
+}
+
 int main() {
-	for (int i = 20; i > 9; i--)
-	    std::cout << i << std::endl;
+	int year;
+	std::cout << "Podaj rok urodzenia: ";
+	std::cin >> year;
+	std::cout << "twoj wiek to: " << CurrentAge(year);
 	return 0;
 }
