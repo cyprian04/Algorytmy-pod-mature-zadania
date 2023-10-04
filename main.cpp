@@ -1,18 +1,29 @@
 ﻿#include <iostream>
 
-int HowManyA(const std::string text_in) {
-	int sum = 0;
-	for (int i = 0; i < text_in.length(); i++)
-		if (text_in[i] == 'a' || text_in[i] == 'A')
-			sum++;
-	return sum;
+void CheckPesel(const std::string pesel_in) {
+    int weight[11] = { 1, 3, 7, 9, 1, 3, 7, 9, 1, 3, 1 };
+    int Sum = 0;
+    int change = 0;
+
+    for (int i = 0; i < 11; i++)
+        Sum += pesel_in[i] * weight[i];
+    change = Sum % 10;
+
+    if (change == 0)
+        std::cout << "Pesel jest poprawny :)";
+    else
+        std::cout << "Pesel nie jest poprawny :(";
 }
 
 int main() {
-	std::string text;
-	std::cout << "Podaj wyraz: ";
-	std::cin >> text;
-	std::cout << "W tym wyrazie jest: "<<HowManyA(text)<<" a";
+    std::string pesel;
+    pesel.resize(11);
 
-	return 0;
+    for (size_t i = 0; i < pesel.length(); i++) {
+        std::cout << "Podaj " << i + 1 << " cyfre peselu: ";
+        std::cin >> pesel[i];
+    }
+    CheckPesel(pesel);
+
+    return 0;
 }
