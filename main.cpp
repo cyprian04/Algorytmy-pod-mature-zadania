@@ -1,17 +1,20 @@
 ﻿#include <iostream>
 
-bool dividedBy(int value) {
-	return (value % 3 == 0) && (value % 5 == 0);
+bool isInRange(const int num1, const int num2, const int num3) {
+	return (num1 >= 13 && num1 <= 19) || (num2 >= 13 && num2 <= 19) || (num3 >= 13 && num3 <= 19);
 }
 
 int main() {
-	int num;
-	std::cout << "Podaj liczbe: ";
-	std::cin >> num;
+	int nums[3] = {0};
 
-	if (dividedBy(num))
-		std::cout << "Jest podzielna na 3 i 5";
+	for (int i = 0; i < 3; i++) {
+		std::cout << "Podaj liczbe "<< i+1 <<": ";
+		std::cin >>nums[i];
+	}
+
+	if (isInRange(nums[0], nums[1], nums[2]))
+		std::cout << "Co najmniej jedna z nich nalezy do przedzialu od 13 do 19";
 	else
-		std::cout << "NIE jest podzielna na 3 i 5";
+		std::cout << "Zadna z nich nie nalezy do przedzialu od 13 do 19";
 	return 0;
 }
