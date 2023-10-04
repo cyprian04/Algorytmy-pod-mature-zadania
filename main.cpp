@@ -1,25 +1,24 @@
 ﻿#include <iostream>
 
-int HowManyDigits(int num) {
-    int sum = 0;
-    int digit = 0;
+void IsPrime(const int num) {
+    bool isPrime = true;
+    for (int i = 2; i < num; i++)
+        if (num % i == 0) {
+            isPrime = false;
+            break;
+        }
 
-    if (num == 0) return ++sum;
-
-    while (num != 0) {
-        digit = num % 10;
-        num -= digit;
-        num /= 10;
-        sum++;
-    }
-    return sum;
+    if (isPrime && num != 1)
+        std::cout << "Jest pierwsza";
+    else
+        std::cout << "NIE jest pierwsza";
 }
 
 int main() {
     int num = 0;
     std::cout << "Podaj liczbe: ";
     std::cin >> num;
-    std::cout << "ilosc cyfr tej liczby to: " << HowManyDigits(num);
+    IsPrime(num);
 
     return 0;
 }
