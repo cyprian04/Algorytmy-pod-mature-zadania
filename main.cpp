@@ -1,23 +1,16 @@
 ﻿#include <iostream>
 
-bool IsPrime(const int num) {
-    bool isPrime = true;
-    for (int i = 2; i < num; i++)
-        if (num % i == 0) {
-            isPrime = false;
-            break;
-        }
-    return isPrime && num != 1;
+long long CountTheFactorial(int num) {
+    if (num == 1 || num == 0)
+        return num;
+    return CountTheFactorial(num - 1) * num;
 }
 
 int main() {
-    int num = 0;
-    std::cout << "Podaj liczbe: ";
-    std::cin >> num;
+    int factorial = 0;
+    std::cout << "Podaj silnie do wyliczenia: ";
+    std::cin >> factorial;
+    std::cout << factorial << "! wynosi: " << CountTheFactorial(factorial);
 
-    if (IsPrime(num))
-        std::cout << "Jest pierwsza";
-    else
-        std::cout << "NIE jest pierwsza";
     return 0;
 }
