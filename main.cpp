@@ -1,17 +1,17 @@
 ﻿#include <iostream>
 
-//  10 11 12    18 17 16
-//  13 14 15 => 15 14 13
-//  16 17 18    12 11 10
+//  10 11 12    12 15 18
+//  13 14 15 => 11 14 17
+//  16 17 18    10 13 16
 /*
-    10 [0][0] => [2][2]
-    11 [0][1] => [2][1]
-    12 [0][2] => [2][0]
-    13 [1][0] => [1][2]
+    10 [0][0] => [2][0]
+    11 [0][1] => [1][0]
+    12 [0][2] => [0][0]
+    13 [1][0] => [2][1]
     14 [1][1] => [1][1]
-    15 [1][2] => [1][0]
+    15 [1][2] => [0][1]
 
-    algorytm [i][j] => [rowCount -1 - i][columnCount - 1 - j]
+    algorytm [i][j] => [rowCount -1 -j][i]
 */
 
 int main() {
@@ -32,7 +32,7 @@ int main() {
 
     for (int i = 0; i < rowCount; i++)
         for (int j = 0; j < columnCount; j++)
-             pomocnicza[rowCount - 1 - i][columnCount - 1 - j] = tablica[i][j];
+             pomocnicza[rowCount - 1 - j][i] = tablica[i][j];
 
     for (int i = 0; i < rowCount; i++) {
         for (int j = 0; j < columnCount; j++)
