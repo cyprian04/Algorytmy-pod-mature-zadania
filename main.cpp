@@ -1,25 +1,19 @@
 ﻿#include <iostream>
-
-//  10 11 12    12 15 18
-//  13 14 15 => 11 14 17
-//  16 17 18    10 13 16
 /*
-    10 [0][0] => [2][0]
-    11 [0][1] => [1][0]
-    12 [0][2] => [0][0]
-    13 [1][0] => [2][1]
-    14 [1][1] => [1][1]
-    15 [1][2] => [0][1]
+*   10 11    10 12 14 17 18
+*   12 13    11 13 15 17 19
+*   14 15 => 
+*   16 17
+*   18 19
 
-    algorytm [i][j] => [rowCount -1 -j][i]
 */
 
 int main() {
     char number = 10;
-    const int rowCount = 3;
-    const int columnCount = 3;
+    const int rowCount = 5;
+    const int columnCount = 2;
     int tablica[rowCount][columnCount];
-    int pomocnicza[rowCount][columnCount];
+    int pomocnicza[columnCount][rowCount];
 
     for (int i = 0; i < rowCount; i++){
         for (int j = 0; j < columnCount; j++, number++){
@@ -30,12 +24,13 @@ int main() {
     }
     std::cout << std::endl;
 
-    for (int i = 0; i < rowCount; i++)
-        for (int j = 0; j < columnCount; j++)
-             pomocnicza[rowCount - 1 - j][i] = tablica[i][j];
+    for (int i = 0; i < columnCount; i++)
+        for (int j = 0; j < rowCount; j++)
+            pomocnicza[i][j] = tablica[j][i];
+             
 
-    for (int i = 0; i < rowCount; i++) {
-        for (int j = 0; j < columnCount; j++)
+    for (int i = 0; i < columnCount; i++) {
+        for (int j = 0; j < rowCount; j++)
             std::cout << pomocnicza[i][j] << " ";
         std::cout << std::endl;
     }
