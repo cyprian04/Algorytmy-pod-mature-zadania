@@ -3,16 +3,14 @@
 int main() {
     const int rowCount = 5;
     const int columnCount = 5;
-    int tablica[rowCount][columnCount] = { 0 }; 
-    int num = 5;
-
-    for (int i = 0; i < rowCount; i++) {
-        tablica[i][columnCount - 1 - i] = num;
-        num*=2;
-    }
+    int tablica[rowCount][columnCount];
 
     for (int i = 0; i < rowCount; i++) {
         for (int j = 0; j < columnCount; j++) {
+            if (i == j)
+                tablica[i][j] = (i+1)*(j+1);
+            else
+                tablica[i][j] = 0;
             std::cout << tablica[i][j] << " ";
         }
         std::cout << std::endl;
