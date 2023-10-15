@@ -2,10 +2,10 @@
 #include <fstream>
 using namespace std;
 
-bool adjacentSignsTotal220(const string text) {
-    for (size_t i = 0; i < text.length() - 1; i++)
-        if (text[i] + text[i + 1] == 220)
-            return true;
+bool isNumEven(const string text) {
+    char lastDigit = text[text.length() - 1];
+    if ((lastDigit - 48) % 2 == 0)
+        return true;
 
     return false;
 }
@@ -14,14 +14,17 @@ int main() {
     string text;
     fstream file;
     ofstream saveFile;
-    file.open("hasla.txt");
-    saveFile.open("wynik4c.txt");
+    file.open("cyfry.txt");
+    saveFile.open("zadanie4.txt");
+    int counter = 0;
 
     while (!file.eof()) {
         file >> text;
-        if (adjacentSignsTotal220(text))
-            saveFile << text << endl;
+        if (isNumEven(text))
+            counter++;
     }
+
+    saveFile << "a) " << counter << endl;
 
     file.close();
     saveFile.close();
