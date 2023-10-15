@@ -1,35 +1,23 @@
 ﻿#include <iostream>
 #include <fstream>
+#include <map>
 using namespace std;
-
-bool equalDigits(const string text) {
-    int oneCount = 0;
-    int zeroCount = 0;
-
-    for (const auto c : text) {
-        if (c == '1')
-            oneCount++;
-        else if (c == '0')
-            zeroCount++;
-    }
-    return oneCount == zeroCount;
-}
 
 int main() {
     string text;
     fstream file;
     ofstream saveFile;
-    file.open("napisy.txt");
-    saveFile.open("zadanie4.txt");
-    int counter = 0;
+    file.open("slowa.txt");
+    saveFile.open("wynik5.txt");
+    map<int, int> liczbyK;
 
     while (!file.eof()) {
         file >> text;
-        if (equalDigits(text))
-            counter++;
+        liczbyK[text.length()]++;
     }
 
-    saveFile <<"b) " << counter;
+    for (auto c : liczbyK)
+        saveFile<< " liczba n = " << c.first << " liczba wierszy: " << c.second << endl;
 
     file.close();
     saveFile.close();
