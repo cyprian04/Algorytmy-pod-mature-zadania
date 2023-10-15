@@ -1,27 +1,45 @@
 ﻿#include <iostream>
 #include <fstream>
-#include <map>
 using namespace std;
+
+string mirrorReflection(const string text) {
+    string reflection;
+    for (int i = 0; i < text.length(); i++)
+        reflection += text[text.length() - 1 - i];
+    return reflection;
+}
+
+int CountOfText(const string text, fstream &slowa) {
+    int count = 0;
+    string temp;
+    slowa.open("slowa.txt");
+
+    while (!slowa.eof()) {
+        slowa >> temp;
+        if (temp == text)
+            count++;
+    }
+    slowa.close();
+    return count;
+}
 
 int main() {
     string text;
-    fstream file;
+    fstream slowa;
+    fstream nowe;
     ofstream saveFile;
-    file.open("slowa.txt");
+    nowe.open("nowe.txt");
     saveFile.open("wynik5.txt");
-    map<int, int> liczbyK;
 
-    while (!file.eof()) {
-        file >> text;
-        liczbyK[text.length()]++;
+    saveFile << "b) \n";
+
+    while (!nowe.eof()) {
+        nowe >> text;
+        saveFile << CountOfText(text, slowa)<<" ";
+        saveFile << CountOfText(mirrorReflection(text), slowa)<<endl;
     }
 
-    saveFile << "a)\n";
-
-    for (auto c : liczbyK)
-        saveFile << "liczba n = " << c.first << " liczba wierszy: " << c.second << endl;
-
-    file.close();
+    nowe.close();
     saveFile.close();
     return 0;
 }

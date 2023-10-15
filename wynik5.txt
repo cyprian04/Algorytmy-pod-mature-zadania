@@ -1,13 +1,27 @@
-a)
-liczba n = 1 liczba wierszy: 84
-liczba n = 2 liczba wierszy: 65
-liczba n = 3 liczba wierszy: 92
-liczba n = 4 liczba wierszy: 75
-liczba n = 5 liczba wierszy: 104
-liczba n = 6 liczba wierszy: 75
-liczba n = 7 liczba wierszy: 95
-liczba n = 8 liczba wierszy: 71
-liczba n = 9 liczba wierszy: 81
-liczba n = 10 liczba wierszy: 62
-liczba n = 11 liczba wierszy: 102
-liczba n = 12 liczba wierszy: 94
+b) 
+4 5
+0 0
+3 1
+10 1
+0 4
+6 1
+2 1
+11 1
+5 1
+5 4
+5 0
+0 7
+0 4
+5 0
+5 5
+4 5
+4 2
+4 5
+2 5
+4 8
+4 5
+9 9
+0 2
+0 4
+5 0
+5 0
