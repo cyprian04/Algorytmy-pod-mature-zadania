@@ -1,19 +1,29 @@
 ﻿#include <iostream>
+#include <fstream>
+using namespace std;
+
+bool isPalindrom(const string text) {
+    for (int i = 0; i < text.length(); i++)
+        if (text[i] != text[text.length() - 1 - i])
+            return false;
+
+    return true;
+}
 
 int main() {
-    const int rowCount = 5;
-    const int columnCount = 5;
-    int tablica[rowCount][columnCount];
+    string text;
+    fstream file;
+    ofstream saveFile;
+    file.open("dane.txt");
+    saveFile.open("zadanie4.txt");
 
-    for (int i = 0; i < rowCount; i++) {
-        for (int j = 0; j < columnCount; j++) {
-            if (i == j)
-                tablica[i][j] = (i+1)*(j+1);
-            else
-                tablica[i][j] = 0;
-            std::cout << tablica[i][j] << " ";
-        }
-        std::cout << std::endl;
+    while (!file.eof()) {
+        file >> text;
+        if (isPalindrom(text))
+            saveFile << text << endl;
     }
+
+    file.close();
+    saveFile.close();
     return 0;
 }
