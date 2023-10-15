@@ -1,1 +1,3 @@
-a) 495
+b) 
+Najwiêksza suma cyfr jest w wartoœci: 187869866
+Najmniejsza suma cyfr jest w wartoœci: 10010

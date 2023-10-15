@@ -2,12 +2,11 @@
 #include <fstream>
 using namespace std;
 
-bool isNumEven(const string text) {
-    char lastDigit = text[text.length() - 1];
-    if ((lastDigit - 48) % 2 == 0)
-        return true;
-
-    return false;
+int sumOfDigits(const string text) {
+    int sum = 0;
+    for (size_t i = 0; i < text.length(); i++)
+        sum += (text[i] - 48);
+    return sum;
 }
 
 int main() {
@@ -16,15 +15,27 @@ int main() {
     ofstream saveFile;
     file.open("cyfry.txt");
     saveFile.open("zadanie4.txt");
-    int counter = 0;
+    int maxNumCount = 0;
+    int minNumCount = 81; // max możliwość
+    string minNum, maxNum;
 
     while (!file.eof()) {
         file >> text;
-        if (isNumEven(text))
-            counter++;
+
+        if (sumOfDigits(text) > maxNumCount) {
+            maxNumCount = sumOfDigits(text);
+            maxNum = text;
+        }
+        if (sumOfDigits(text) < minNumCount) {
+            minNumCount = sumOfDigits(text);
+            minNum = text;
+        }
     }
 
-    saveFile << "a) " << counter << endl;
+    saveFile << "b) "<< endl;
+    saveFile << "Największa suma cyfr jest w wartości: "<< maxNum <<endl;
+    saveFile << "Najmniejsza suma cyfr jest w wartości: " << minNum<<endl;
+
 
     file.close();
     saveFile.close();
