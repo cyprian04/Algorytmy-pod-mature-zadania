@@ -16,8 +16,10 @@ int main() {
         liczbyK[text.length()]++;
     }
 
+    saveFile << "a)\n";
+
     for (auto c : liczbyK)
-        saveFile<< " liczba n = " << c.first << " liczba wierszy: " << c.second << endl;
+        saveFile << "liczba n = " << c.first << " liczba wierszy: " << c.second << endl;
 
     file.close();
     saveFile.close();
