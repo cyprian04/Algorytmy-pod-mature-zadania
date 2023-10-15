@@ -1,7 +1,19 @@
 ﻿#include <iostream>
 #include <fstream>
-#include <map>
 using namespace std;
+
+bool equalDigits(const string text) {
+    int oneCount = 0;
+    int zeroCount = 0;
+
+    for (const auto c : text) {
+        if (c == '1')
+            oneCount++;
+        else if (c == '0')
+            zeroCount++;
+    }
+    return oneCount == zeroCount;
+}
 
 int main() {
     string text;
@@ -9,15 +21,15 @@ int main() {
     ofstream saveFile;
     file.open("napisy.txt");
     saveFile.open("zadanie4.txt");
-    map<int, int> liczbyK;
+    int counter = 0;
 
     while (!file.eof()) {
         file >> text;
-        liczbyK[text.length()]++;
+        if (equalDigits(text))
+            counter++;
     }
 
-    for (auto c: liczbyK)
-        saveFile <<" wyrazów o długości k = " << c.first << " jest ich: " << c.second << endl;
+    saveFile <<"b) " << counter;
 
     file.close();
     saveFile.close();
