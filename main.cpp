@@ -2,26 +2,25 @@
 #include <fstream>
 using namespace std;
 
-bool isPalindrom(const string text) {
-    for (int i = 0; i < text.length(); i++)
-        if (text[i] != text[text.length() - 1 - i])
-            return false;
-
-    return true;
-}
-
 int main() {
     string text;
     fstream file;
     ofstream saveFile;
-    file.open("dane.txt");
-    saveFile.open("zadanie4.txt");
+    file.open("hasla.txt");
+    saveFile.open("wynik4a.txt");
+    int evenCount = 0;
+    int oddCount = 0;
 
     while (!file.eof()) {
         file >> text;
-        if (isPalindrom(text))
-            saveFile << text << endl;
+        if (text.length() % 2 == 0)
+            evenCount++;
+        else
+            oddCount++;
     }
+
+    saveFile << "Liczba haseł o parzystej liczbie znaków: "<< evenCount << endl;
+    saveFile << "Liczba haseł o nieparzystej liczbie znaków: " << oddCount << endl;
 
     file.close();
     saveFile.close();
