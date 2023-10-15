@@ -2,28 +2,21 @@
 #include <fstream>
 using namespace std;
 
-bool isIncreasing(const string text) {
-    for (size_t i = 0; i < text.length() - 1; i++)
-        if (text[i] >= text[i + 1])
-            return false;
-
-    return true;
-}
-
 int main() {
     string text;
     fstream file;
     ofstream saveFile;
-    file.open("cyfry.txt");
+    file.open("napisy.txt");
     saveFile.open("zadanie4.txt");
-
-    saveFile << "c) " << endl;
+    int counter = 0;
 
     while (!file.eof()) {
         file >> text;
-        if (isIncreasing(text))
-            saveFile << text << endl;
+        if (text.length() % 2 == 0)
+            counter++;
+        
     }
+    saveFile << "a) " << counter << endl;
 
     file.close();
     saveFile.close();
