@@ -1,1 +1,3 @@
-a) 504
+c)
+Liczba napisów z samych 0: 32
+Liczba napisów z samych 1: 50
