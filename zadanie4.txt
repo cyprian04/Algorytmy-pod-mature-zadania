@@ -1,3 +1,5 @@
-b) 
-Najwiêksza suma cyfr jest w wartoœci: 187869866
-Najmniejsza suma cyfr jest w wartoœci: 10010
+c) 
+2389
+23567
+123456789
+3468
