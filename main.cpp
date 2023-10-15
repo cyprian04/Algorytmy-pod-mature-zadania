@@ -2,12 +2,12 @@
 #include <fstream>
 using namespace std;
 
-bool isPalindrom(const string text) {
-    for (int i = 0; i < text.length(); i++)
-        if (text[i] != text[text.length() - 1 - i])
-            return false;
+bool adjacentSignsTotal220(const string text) {
+    for (size_t i = 0; i < text.length() - 1; i++)
+        if (text[i] + text[i + 1] == 220)
+            return true;
 
-    return true;
+    return false;
 }
 
 int main() {
@@ -15,11 +15,11 @@ int main() {
     fstream file;
     ofstream saveFile;
     file.open("hasla.txt");
-    saveFile.open("wynik4b.txt");
+    saveFile.open("wynik4c.txt");
 
     while (!file.eof()) {
         file >> text;
-        if (isPalindrom(text))
+        if (adjacentSignsTotal220(text))
             saveFile << text << endl;
     }
 
