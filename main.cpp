@@ -1,13 +1,7 @@
 ﻿#include <iostream>
 #include <fstream>
+#include <map>
 using namespace std;
-
-bool haveOnlyOneSign(const string text, const char sign) { 
-    for (size_t i = 0; i < text.length(); i++)
-        if (text[i] != sign)
-            return false;
-    return true;
-}
 
 int main() {
     string text;
@@ -15,20 +9,15 @@ int main() {
     ofstream saveFile;
     file.open("napisy.txt");
     saveFile.open("zadanie4.txt");
-    int counterZero = 0;
-    int counterOne = 0;
+    map<int, int> liczbyK;
 
     while (!file.eof()) {
         file >> text;
-        if (haveOnlyOneSign(text, '0'))
-            counterZero++;
-        else if (haveOnlyOneSign(text, '1'))
-            counterOne++;
+        liczbyK[text.length()]++;
     }
 
-    saveFile << "c)\n" << "Liczba napisów z samych 0: "<<counterZero << endl;
-    saveFile << "Liczba napisów z samych 1: " << counterOne << endl;
-
+    for (auto c: liczbyK)
+        saveFile <<" wyrazów o długości k = " << c.first << " jest ich: " << c.second << endl;
 
     file.close();
     saveFile.close();

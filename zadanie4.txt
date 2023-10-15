@@ -1,3 +1,15 @@
-c)
-Liczba napisów z samych 0: 32
-Liczba napisów z samych 1: 50
+ wyrazów o d³ugoœci k = 2 jest ich: 43
+ wyrazów o d³ugoœci k = 3 jest ich: 38
+ wyrazów o d³ugoœci k = 4 jest ich: 37
+ wyrazów o d³ugoœci k = 5 jest ich: 57
+ wyrazów o d³ugoœci k = 6 jest ich: 53
+ wyrazów o d³ugoœci k = 7 jest ich: 68
+ wyrazów o d³ugoœci k = 8 jest ich: 78
+ wyrazów o d³ugoœci k = 9 jest ich: 103
+ wyrazów o d³ugoœci k = 10 jest ich: 83
+ wyrazów o d³ugoœci k = 11 jest ich: 90
+ wyrazów o d³ugoœci k = 12 jest ich: 86
+ wyrazów o d³ugoœci k = 13 jest ich: 81
+ wyrazów o d³ugoœci k = 14 jest ich: 68
+ wyrazów o d³ugoœci k = 15 jest ich: 59
+ wyrazów o d³ugoœci k = 16 jest ich: 56
