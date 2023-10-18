@@ -1,43 +1,25 @@
 ﻿#include <iostream>
-#include <fstream>
+#include <vector>
 using namespace std;
 
-int sumOfDigits(const string text) {
-    int sum = 0;
-    for (size_t i = 0; i < text.length(); i++)
-        sum += (text[i] - 48);
-    return sum;
-}
-
 int main() {
-    string text;
-    fstream file;
-    ofstream saveFile;
-    file.open("cyfry.txt");
-    saveFile.open("zadanie4.txt");
-    int maxNumCount = 0;
-    int minNumCount = 81; // max możliwość
-    string minNum, maxNum;
+    int num = 0;
+    vector<int> nums;
+    cout << "Podaj liczbe: ";
+    cin >> num;
 
-    while (!file.eof()) {
-        file >> text;
+    if (num == 0) nums.push_back(0);
 
-        if (sumOfDigits(text) > maxNumCount) {
-            maxNumCount = sumOfDigits(text);
-            maxNum = text;
-        }
-        if (sumOfDigits(text) < minNumCount) {
-            minNumCount = sumOfDigits(text);
-            minNum = text;
-        }
+    while (num != 0) {
+        int digit = num % 10 ;     
+        num -= digit;
+        num /= 10;
+   
+        nums.push_back(digit);
     }
 
-    saveFile << "b) " << endl;
-    saveFile << "Liczba o największej sumie cyfr: " << maxNum << endl;
-    saveFile << "Liczba o najmniejszej sumie cyfr: " << minNum << endl;
+    for (size_t i = 0; i < nums.size(); i++)
+        cout << nums[nums.size() - 1 - i];
 
-
-    file.close();
-    saveFile.close();
     return 0;
 }
