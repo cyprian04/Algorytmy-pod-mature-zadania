@@ -2,24 +2,30 @@
 #include <vector>
 using namespace std;
 
-int sumOfEvenNums(vector<int> vec) {
-    int sum = 0;
-
+int numsAreDivided(vector<int> vec) {
     for (size_t i = 0; i < vec.size(); i++)
-        if (vec[i] % 2 == 0)
-            sum += vec[i];
-    return sum;
+        if (vec[i] % 13 == 0)
+            return false;
+    return true;
 }
 
 int main() {
-    int num = 0;
-    vector<int> nums = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    int size = 0;
+    vector<int> nums;
+    cout << "Podaj ilosc liczb jaka chcesz wprowadzic :";
+    cin >> size;
 
-    cout << "Wektor posiada liczby: ";
-    for (const auto &n : nums)
-        cout << n <<" ";
+    for (size_t i = 0; i < size; i++) {
+        int temp = 0;
+        cout << "Podaj liczbe nr " << i + 1 << ": ";
+        cin >> temp;
+        nums.push_back(temp);
+    }
 
-    cout << "\nSuma liczb parzystych tego wektora: "<< sumOfEvenNums(nums);
+    if (numsAreDivided(nums))
+        cout << "Wszystkie liczby wektora nie sa podzielne przez 13";
+    else 
+        cout << "Co najmniej jedna z liczb wektora jest podzielna przez 13";
 
     return 0;
 }
