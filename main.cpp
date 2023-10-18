@@ -2,44 +2,42 @@
 #include <fstream>
 using namespace std;
 
-string mirrorReflection(const string text) {
-    string reflection;
-    for (int i = 0; i < text.length(); i++)
-        reflection += text[text.length() - 1 - i];
-    return reflection;
-}
-
-int CountOfText(const string text, fstream &slowa) {
-    int count = 0;
-    string temp;
-    slowa.open("slowa.txt");
-
-    while (!slowa.eof()) {
-        slowa >> temp;
-        if (temp == text)
-            count++;
-    }
-    slowa.close();
-    return count;
+int sumOfDigits(const string text) {
+    int sum = 0;
+    for (size_t i = 0; i < text.length(); i++)
+        sum += (text[i] - 48);
+    return sum;
 }
 
 int main() {
     string text;
-    fstream slowa;
-    fstream nowe;
+    fstream file;
     ofstream saveFile;
-    nowe.open("nowe.txt");
-    saveFile.open("wynik5.txt");
+    file.open("cyfry.txt");
+    saveFile.open("zadanie4.txt");
+    int maxNumCount = 0;
+    int minNumCount = 81; // max możliwość
+    string minNum, maxNum;
 
-    saveFile << "b) \n";
+    while (!file.eof()) {
+        file >> text;
 
-    while (!nowe.eof()) {
-        nowe >> text;
-        saveFile << CountOfText(text, slowa)<<" ";
-        saveFile << CountOfText(mirrorReflection(text), slowa)<<endl;
+        if (sumOfDigits(text) > maxNumCount) {
+            maxNumCount = sumOfDigits(text);
+            maxNum = text;
+        }
+        if (sumOfDigits(text) < minNumCount) {
+            minNumCount = sumOfDigits(text);
+            minNum = text;
+        }
     }
 
-    nowe.close();
+    saveFile << "b) " << endl;
+    saveFile << "Liczba o największej sumie cyfr: " << maxNum << endl;
+    saveFile << "Liczba o najmniejszej sumie cyfr: " << minNum << endl;
+
+
+    file.close();
     saveFile.close();
     return 0;
 }
