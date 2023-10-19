@@ -2,40 +2,32 @@
 #include <vector>
 using namespace std;
 
-vector<string> delSpecialSymbols(vector<string> strings) {
-    vector<string> result;
-
-    for (auto &s: strings) {
-        string temp;
-        for (size_t i = 0; i < s.length(); i++)
-            if (s[i] != '.' && s[i] != ',' && s[i] !=':' && s[i] !=';' && s[i] !='!' && s[i] != '?' && s[i] != '"')
-                temp += s[i];
-
-        result.push_back(temp);
-    }
-    return result;
+bool isPalindrom(const vector<int> vec) {
+    for (size_t i = 0; i < vec.size(); i++)
+        if (vec[i] != vec[vec.size() - 1 - i])
+            return false;
+    return true;
 }
 
 int main() {
     int size = 0;
-    vector<string> strings;
-    cout << "Podaj ile napisow chcesz wprowadzic :";
+    vector<int> nums;
+    cout << "Podaj ile liczb chcesz wprowadzic :";
     cin >> size;
 
     if (size == 0) return 0;
 
     for (size_t i = 0; i < size; i++) {
-        string temp;
+        int temp = 0;
         cout << "Podaj napis nr " << i + 1 << ": ";
         cin >> temp;
-        strings.push_back(temp);
+        nums.push_back(temp);
     }
-    cout << "napisy po usunieciu specjalnych znakow \n";
 
-    vector<string>FilteredStrings = delSpecialSymbols(strings);
-
-    for (const auto& s : FilteredStrings)
-        cout << s << endl;
+    if (isPalindrom(nums))
+        cout << "wektor jest palindromem";
+    else
+        cout << "wektor nie jest palindromem";
 
     return 0;
 }
