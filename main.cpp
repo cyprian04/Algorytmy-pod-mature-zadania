@@ -1,32 +1,36 @@
 ﻿#include <iostream>
 #include <vector>
-#include <algorithm>
 using namespace std;
 
-vector<int> filteredVec(vector<int> &vec) {
-    vector<int> nums;
-    int maxNum = *max_element(vec.begin(), vec.end());
-    int minNum = *min_element(vec.begin(), vec.end());
-    int treshold = (maxNum + minNum) / 2;
+int silnia(int num) {
+    int sum = 1;
+    for (int i = 1; i <= num; i++)
+        sum *= i;
+    return sum;
+}
 
-    for (size_t i = 0; i < vec.size(); i++)
-        if (vec[i] >= treshold)
-            nums.push_back(vec[i]); 
-
-    return nums;
+vector<int> silniaN(int n) {
+    vector<int> result;
+    for (int i = 1; i <=n; i++) {
+        int temp = silnia(i);
+        result.push_back(temp);
+    }
+    return result;
 }
 
 int main() {
-    vector<int> nums = { 1,2,3,4,5,6,7,8,9 };
+    int n = 0;
+    cout << "Podaj silnie: ";
+    cin >> n;
 
-    cout << "mamy wektor\n";
-    for (const auto n : nums)
-         cout << n << ", ";
+    if (n == 0) {
+        cout << "1";
+        return 0;
+    }
 
-    vector<int>filtered = filteredVec(nums);
+    vector<int> silnia = silniaN(n);
 
-    cout << "\nZaktualizowany wektor: \n";
-    for (const auto n : filtered)
-        cout << n << ", ";
+    for (auto v : silnia)
+        cout << v << " ";
     return 0;
 }
