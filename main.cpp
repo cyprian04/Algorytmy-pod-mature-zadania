@@ -2,32 +2,40 @@
 #include <vector>
 using namespace std;
 
-float arithmeticAverage(vector<float> vec) {
-    float result = 0.0f;
-    for (size_t i = 0; i < vec.size(); i++)
-        result += vec[i];
+vector<string> delSpecialSymbols(vector<string> strings) {
+    vector<string> result;
 
-    return result/vec.size();
+    for (auto &s: strings) {
+        string temp;
+        for (size_t i = 0; i < s.length(); i++)
+            if (s[i] != '.' && s[i] != ',' && s[i] !=':' && s[i] !=';' && s[i] !='!' && s[i] != '?' && s[i] != '"')
+                temp += s[i];
+
+        result.push_back(temp);
+    }
+    return result;
 }
 
 int main() {
     int size = 0;
-    vector<float> nums;
-    cout << "Podaj ilosc liczb jaka chcesz wprowadzic :";
+    vector<string> strings;
+    cout << "Podaj ile napisow chcesz wprowadzic :";
     cin >> size;
 
-    if (size == 0) {
-        cout << " Srednia arytmetyczna tego wektora wynosi 0";
-        return 0;
-    }   
+    if (size == 0) return 0;
 
     for (size_t i = 0; i < size; i++) {
-        float temp = 0;
-        cout << "Podaj liczbe nr " << i + 1 << ": ";
+        string temp;
+        cout << "Podaj napis nr " << i + 1 << ": ";
         cin >> temp;
-        nums.push_back(temp);
+        strings.push_back(temp);
     }
+    cout << "napisy po usunieciu specjalnych znakow \n";
 
-    cout << "Srednia arytmetyczna tego wektora wynosi: " << arithmeticAverage(nums);
+    vector<string>FilteredStrings = delSpecialSymbols(strings);
+
+    for (const auto& s : FilteredStrings)
+        cout << s << endl;
+
     return 0;
 }
