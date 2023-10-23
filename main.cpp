@@ -1,29 +1,29 @@
 ﻿#include <iostream>
-#include <cmath>
 using namespace std;
 
-int signToDigit(char sign) {
-    if (sign >= 'A') return sign - 55;
-    else return sign - 48;
-}
+string convertDecToBin(int num) {
+    string result;
+    string temp;
+    int change = 0;
 
-int convertAnyToDec(string num, int system) {
-    int result = 0;
+    if (num == 0) return "0";
 
-    for (size_t i = 0; i < num.length(); i++) 
-        result += signToDigit(num[num.length() - 1 - i]) * pow(system,i);
+    while (num > 0) {
+        change = num % 2;
+        temp = result;
+        result = change + 48;
+        result +=temp;
+        num -= change;
+        num /= 2;
+    }
     return result;
 }
 
 int main() {
-    string num;
-    int system = 0;
-
+    int num;
     cout << "Podaj liczbe: ";
     cin >> num;
-    cout << "Podaj w jakim systemie jest ta liczba: ";
-    cin >> system;
-    cout<<"Liczba "<< num <<"("<<system<<") wynosi: " <<convertAnyToDec(num, system) <<"(10)";
+    cout<<"Liczba "<< num <<"(10) wynosi: " <<convertDecToBin(num) <<"(2)";
 
     return 0;
 }
