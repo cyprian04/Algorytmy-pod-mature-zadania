@@ -1,36 +1,29 @@
 ﻿#include <iostream>
-#include <vector>
+#include <cmath>
 using namespace std;
 
-int silnia(int num) {
-    int sum = 1;
-    for (int i = 1; i <= num; i++)
-        sum *= i;
-    return sum;
+int signToDigit(char sign) {
+    if (sign >= 'A') return sign - 55;
+    else return sign - 48;
 }
 
-vector<int> silniaN(int n) {
-    vector<int> result;
-    for (int i = 1; i <=n; i++) {
-        int temp = silnia(i);
-        result.push_back(temp);
-    }
+int convertAnyToDec(string num, int system) {
+    int result = 0;
+
+    for (size_t i = 0; i < num.length(); i++) 
+        result += signToDigit(num[num.length() - 1 - i]) * pow(system,i);
     return result;
 }
 
 int main() {
-    int n = 0;
-    cout << "Podaj silnie: ";
-    cin >> n;
+    string num;
+    int system = 0;
 
-    if (n == 0) {
-        cout << "1";
-        return 0;
-    }
+    cout << "Podaj liczbe: ";
+    cin >> num;
+    cout << "Podaj w jakim systemie jest ta liczba: ";
+    cin >> system;
+    cout<<"Liczba "<< num <<"("<<system<<") wynosi: " <<convertAnyToDec(num, system) <<"(10)";
 
-    vector<int> silnia = silniaN(n);
-
-    for (auto v : silnia)
-        cout << v << " ";
     return 0;
 }
