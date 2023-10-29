@@ -2,12 +2,11 @@
 using namespace std;
 
 int silnia(int num) {
-    int result = 1;
-    for (int i = 1; i <= num; i++)
-        result *= i;
+    if (num <= 1) return 1;
 
-    return result;
+    return silnia(num - 1) * num;
 }
+
 int main() {
     int num = 0;
     cout << "Podaj silnie: ";
