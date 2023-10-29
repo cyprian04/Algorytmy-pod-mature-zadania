@@ -1,29 +1,24 @@
 ﻿#include <iostream>
 using namespace std;
 
-string convertDecToBin(int num) {
-    string result;
-    string temp;
-    int change = 0;
+int nwd(int a, int b) {
+    int reszta = 0;
 
-    if (num == 0) return "0";
-
-    while (num > 0) {
-        change = num % 2;
-        temp = result;
-        result = change + 48;
-        result +=temp;
-        num -= change;
-        num /= 2;
+    while (b > 0) {
+        reszta = a % b;
+        a = b;
+        b = reszta;
     }
-    return result;
+    return a;
 }
 
 int main() {
-    int num;
-    cout << "Podaj liczbe: ";
-    cin >> num;
-    cout<<"Liczba "<< num <<"(10) wynosi: " <<convertDecToBin(num) <<"(2)";
+    int num1 = 0, num2 = 0;
 
+    cout << "Podaj liczbe a: ";
+    cin >> num1;
+    cout << "Podaj liczbe b: ";
+    cin >> num2;
+    cout << "NWD liczby " << num1 << " i liczby " << num2 << " wynosi: " << nwd(num1, num2);
     return 0;
 }
