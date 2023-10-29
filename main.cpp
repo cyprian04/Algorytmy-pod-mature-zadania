@@ -1,4 +1,5 @@
 ﻿#include <iostream>
+#include <map>
 using namespace std;
 
 string toBigger(string &text) {
@@ -8,24 +9,23 @@ string toBigger(string &text) {
     return text;
 }
 
-int numOfSign(string napis, char sign) {
-    int total = 0;
-    for (size_t i = 0; i < napis.length(); i++)
-        if (napis[i] == sign) 
-            total++;
-
-    return total;
-}
-
 bool isAnagram(string napis1, string napis2) {
     if (napis1.length() != napis2.length())
         return false;
 
     toBigger(napis1);
     toBigger(napis2);
+    map<char, int> signs1;
+    map<char, int> signs2;
+    
+    for (auto c: napis1)
+        signs1[c]++;
+    for (auto c : napis2)
+        signs2[c]++;
 
     for (char sign = 'A'; sign <='Z'; sign++)
-        if (numOfSign(napis1, sign) != numOfSign(napis2, sign))
+        if (signs1.find(sign) != signs1.end() && signs2.find(sign) != signs2.end() && // trzeba sprawdzić czy dany key istnieje na początku
+            signs1.find(sign)->second != signs2.find(sign)->second)
             return false;
     return true;
 }
