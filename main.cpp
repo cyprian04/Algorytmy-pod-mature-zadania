@@ -2,10 +2,14 @@
 using namespace std;
 
 int nwd(int a, int b) {
-    int reszta = a % b;
-    if (reszta == 0)
-        return b;
-    return nwd(b, reszta);
+    int reszta = 0;
+
+    while (b > 0) {
+        reszta = a % b;
+        a = b;
+        b = reszta;
+    }
+    return a;
 }
 
 int nww(int a, int b) {
