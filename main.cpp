@@ -1,29 +1,17 @@
 ﻿#include <iostream>
 using namespace std;
 
-int nwd(int a, int b) {
-    int reszta = 0;
+int silnia(int num) {
+    int result = 1;
+    for (int i = 1; i <= num; i++)
+        result *= i;
 
-    while (b > 0) {
-        reszta = a % b;
-        a = b;
-        b = reszta;
-    }
-    return a;
+    return result;
 }
-
-int nww(int a, int b) {
-    return a * b / nwd(a, b);
-}
-
 int main() {
-
-    int num1 = 0, num2 = 0;
-
-    cout << "Podaj liczbe a: ";
-    cin >> num1;
-    cout << "Podaj liczbe b: ";
-    cin >> num2;
-    cout << "NWW liczby " << num1 << " i liczby " << num2 << " wynosi: " << nww(num1, num2);
+    int num = 0;
+    cout << "Podaj silnie: ";
+    cin >> num;
+    cout << "silnia z " << num <<" wynosi: " << silnia(num);
     return 0;
 }
