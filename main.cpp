@@ -1,18 +1,23 @@
 ﻿#include <iostream>
-#include <cmath>
 using namespace std;
 
-int polynomial(int nums[], int degree, int x) {
-    if (degree == 0)
-        return nums[0];
-    return x * polynomial(nums, degree - 1, x) + nums[degree];
+bool isNumPerfect(int num){
+    int counter = 1;
+    for (int i = 2; i < num; i++)
+        if (num % i == 0)
+            counter += i;
+
+    return counter == num && num != 1;
 }
 
 int main() {
-    int nums[4] = { 2,1,3,9 };
-    int degree = 3;
-    int x = 10;
-
-    cout << "Wartosc wielomianu: " << polynomial(nums, degree, x);
+    int num = 0;
+    cout << "Podaj liczbe: ";
+    cin >> num;
+    
+    if (isNumPerfect(num))
+        cout << "Liczba ta jest doskonala";
+    else
+        cout << "Liczba ta NIE jest doskonala";
     return 0;
 }
