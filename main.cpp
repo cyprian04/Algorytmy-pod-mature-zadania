@@ -1,23 +1,26 @@
 ﻿#include <iostream>
+#include <algorithm>
 using namespace std;
 
-void selectionSort(int tab[], int size) {
-    for (int j = 0; j < size - 1; j++) {
-        int index = j;
-        for (int i = j + 1; i < size; i++) {
-            if (tab[i] < tab[index])
-                index = i;
-        }
-        swap(tab[j], tab[index]);
+void bucketSort(int tab[], int size) {
+    int maxElement = *max_element(tab, tab + size);
+    int* pomocniczaTab = new int[++maxElement] {0};
+    
+    for (int i = 0; i < size; i++)
+            pomocniczaTab[tab[i]]++;
+     
+    for (int i = 0; i < maxElement+1; i++) {
+        if(pomocniczaTab[i] != 0)
+            for (int j = 0; j < pomocniczaTab[i]; j++)
+                cout << i << " ";
     }
+    delete[] pomocniczaTab;
 }
 
 int main() {
-    const int size = 5;
-    int tab[size] = { 8,20,10,15,2 };
-    selectionSort(tab, size);
+    const int size = 8;
+    int tab[size] = { 8,20,10,15,2,2,10,1 };
+    bucketSort(tab, size);
 
-    for (auto element : tab)
-        cout << element << " ";
     return 0;
 }
