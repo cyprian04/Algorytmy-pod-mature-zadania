@@ -1,26 +1,28 @@
 ﻿#include <iostream>
-#include <algorithm>
 using namespace std;
 
-void bucketSort(int tab[], int size) {
-    int maxElement = *max_element(tab, tab + size);
-    int* pomocniczaTab = new int[++maxElement] {0};
+void insertionSort(int tab[], int size) {
     
-    for (int i = 0; i < size; i++)
-            pomocniczaTab[tab[i]]++;
-     
-    for (int i = maxElement+1; i > 0 ; i--) {
-        if(pomocniczaTab[i] != 0)
-            for (int j = 0; j < pomocniczaTab[i]; j++)
-                cout << i << " ";
+    for (int i = 0; i < size - 1; i++) {
+        int index = i + 1;
+        int tempIndex = 0;
+        for (int j = 0; j < index; j++){
+            if (tab[j] > tab[index]) {
+                tempIndex = j;
+                
+                for (int k = index; k > j; k--)
+                    swap(tab[k], tab[k -1]);
+            }
+        }
     }
-    delete[] pomocniczaTab;
 }
 
 int main() {
-    const int size = 8;
-    int tab[size] = { 8,20,10,15,2,2,10,1 };
-    bucketSort(tab, size);
+    const int size = 4;
+    int tab[size] = { 8,20,10,1 };
+    insertionSort(tab, size);
 
+    for (auto element : tab)
+        cout << element << " ";
     return 0;
 }
