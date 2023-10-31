@@ -7,7 +7,7 @@ void insertionSort(int tab[], int size) {
         int index = i + 1;
         int tempIndex = 0;
         for (int j = 0; j < index; j++){
-            if (tab[j] > tab[index]) {
+            if (tab[j] < tab[index]) {
                 tempIndex = j;
                 
                 for (int k = index; k > j; k--)
