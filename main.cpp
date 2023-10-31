@@ -1,23 +1,23 @@
 ﻿#include <iostream>
 using namespace std;
 
-bool isNumPerfect(int num){
-    int counter = 1;
-    for (int i = 2; i < num; i++)
-        if (num % i == 0)
-            counter += i;
+void bubbleSortDesc(int tab[], int size) {
+    int n = size - 1;
 
-    return counter == num && num != 1;
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++)
+            if (tab[j] < tab[j + 1])
+                swap(tab[j], tab[j + 1]);
 }
 
 int main() {
-    int num = 0;
-    cout << "Podaj liczbe: ";
-    cin >> num;
-    
-    if (isNumPerfect(num))
-        cout << "Liczba ta jest doskonala";
-    else
-        cout << "Liczba ta NIE jest doskonala";
+    const int size = 5;
+    int tab[size] = {8,20,10,15,2};
+    bubbleSortDesc(tab, size);
+
+    cout << "Posortowanie malejaco \n";
+    for (auto element : tab)
+        cout <<element << " ";
+
     return 0;
 }
