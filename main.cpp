@@ -4,12 +4,12 @@ using namespace std;
 
 void bucketSort(int tab[], int size) {
     int maxElement = *max_element(tab, tab + size);
-    int* pomocniczaTab = new int[maxElement +1]{ 0 };
+    int* pomocniczaTab = new int[maxElement + 1]{ 0 };
 
     for (int i = 0; i < size; i++)
         pomocniczaTab[tab[i]]++;
 
-    for (int i = maxElement; i >= 0; i--) {
+    for (int i = 0; i < maxElement + 1; i++) {
         if (pomocniczaTab[i] != 0)
             for (int j = 0; j < pomocniczaTab[i]; j++)
                 cout << i << " ";
