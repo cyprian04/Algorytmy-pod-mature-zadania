@@ -4,11 +4,8 @@
 using namespace std;
 
 bool areSameLength(vector<string> strings) {
-    for (int i = 0; i < 5; i++)
-        for (int j = 0; j < 5; j++)
-            if (strings[i].length() != strings[j].length())
-                return false;
-   return true;
+   return strings[0].length() == strings[1].length() && strings[1].length() == strings[2].length() && 
+          strings[2].length() == strings[3].length() && strings[3].length() == strings[4].length();
 }
 
 int main() {
