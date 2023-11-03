@@ -1,7 +1,7 @@
 ﻿#include <iostream>
 using namespace std;
 
-void merge(char tab[], int lewyIndex, int pivot, int prawyIndex, char pomocnicza[]) {
+void merge(int tab[], int lewyIndex, int pivot, int prawyIndex, int pomocnicza[]) {
 	for (int i = lewyIndex; i <= prawyIndex; i++)
 		pomocnicza[i] = tab[i];
 
@@ -29,7 +29,7 @@ void merge(char tab[], int lewyIndex, int pivot, int prawyIndex, char pomocnicza
 	}
 }
 
-void mergeSort(char tab[], int lewyIndex, int prawyIndex, char pomocnicza[]) {
+void mergeSort(int tab[], int lewyIndex, int prawyIndex, int pomocnicza[]) {
 
 	if (lewyIndex != prawyIndex) {
 		int pivot = (lewyIndex + prawyIndex) / 2;
@@ -41,16 +41,24 @@ void mergeSort(char tab[], int lewyIndex, int prawyIndex, char pomocnicza[]) {
 }
 
 int main() {
-	char tab[8] = { 'A', 'Y', 'D', 'B', 'O', 'H', 'C' ,'Z'};
-	char pomocnicza[8];
-	cout << " Przed sortowaniem \n";
-	for (auto sign : tab)
-		cout << sign << " ";
+	int tab[3][4] = { {4,5,6,4}, {3,3,2,7}, {1,1,1,1} };
+	int pomocnicza[4];
 
-	mergeSort(tab, 0, 7, pomocnicza);
+	cout << "Przed sortowaniem \n";
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 4; j++)
+			cout << tab[i][j] << " ";
+	  cout << endl;
+	}
 	
+	for (int i = 0; i < 3; i++) 
+		mergeSort(tab[i], 0, 3, pomocnicza); // przekazuje tab[i] jako wskaźnik do danego wierza 2 wymiarowej tablicy. przez co przekazuje 1 wymiarową do funkcji
+
 	cout << "\n Po sortowaniu \n";
-	for (auto num : tab)
-		cout << num << " ";
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 4; j++)
+			cout << tab[i][j] << " ";
+		cout << endl;
+	}
 	return 0;
 }
