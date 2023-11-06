@@ -1,64 +1,37 @@
 ﻿#include <iostream>
 using namespace std;
 
-void merge(int tab[3][4], int column, int lewyIndex, int pivot, int prawyIndex, int pomocnicza[3][4]) {
-	for (int i = lewyIndex; i <= prawyIndex; i++)
-		pomocnicza[i][column] = tab[i][column];
-
-	int indexLewej = lewyIndex;
-	int indexPrawej = pivot + 1;
+void quickSort(int tab[], int lewyIndex, int prawyIndex) {
+ 
+	int pivot = tab[prawyIndex];
 	int index = lewyIndex;
+	int granica = lewyIndex - 1;
 
-	while (indexLewej <= pivot && indexPrawej <= prawyIndex) {
+	if (lewyIndex >= prawyIndex) return;
 
-		if (pomocnicza[indexLewej][column] <= pomocnicza[indexPrawej][column]) {
-			tab[index][column] = pomocnicza[indexLewej][column];
-			indexLewej++;
-		}
-		else {
-			tab[index][column] = pomocnicza[indexPrawej][column];
-			indexPrawej++;
+	while(index < prawyIndex) {
+
+		if (tab[index] > pivot) {
+			granica++;
+			if(granica != index)
+				swap(tab[granica], tab[index]);
 		}
 		index++;
 	}
+	granica++;
 
-	while (indexLewej <= pivot) {
-		tab[index][column] = pomocnicza[indexLewej][column];
-		indexLewej++;
-		index++;
-	}
-}
+	if (granica != prawyIndex)
+		swap(tab[granica], tab[prawyIndex]);
 
-void mergeSort(int tab[3][4], int column ,int lewyIndex, int prawyIndex, int pomocnicza[3][4]) {
-
-	if (lewyIndex != prawyIndex) {
-		int pivot = (lewyIndex + prawyIndex) / 2;
-
-		mergeSort(tab, column, lewyIndex, pivot, pomocnicza);
-		mergeSort(tab, column, pivot+1, prawyIndex, pomocnicza);
-		merge(tab, column, lewyIndex, pivot, prawyIndex, pomocnicza);
-	}
+	quickSort(tab, lewyIndex, granica -1 );
+	quickSort(tab, granica + 1, prawyIndex);
 }
 
 int main() {
-	int tab[3][4] = { {4,5,6,4}, {3,3,2,7}, {1,1,1,1} };
-	int pomocnicza[3][4];
+	int tab[6] = {4,5,16,4,8,1};
 
-	cout << "Przed sortowaniem \n";
-	for (int i = 0; i < 3; i++) {
-		for (int j = 0; j < 4; j++)
-			cout << tab[i][j] << " ";
-	  cout << endl;
-	}
-	
-	for (int i = 0; i < 4; i++) 
-		mergeSort(tab, i, 0, 2, pomocnicza); 
-
-	cout << "\nPo sortowaniu \n";
-	for (int i = 0; i < 3; i++) {
-		for (int j = 0; j < 4; j++)
-			cout << tab[i][j] << " ";
-		cout << endl;
-	}
+	quickSort(tab, 0, 5);
+	for (auto num : tab)
+		cout << num << " ";
 	return 0;
 }
