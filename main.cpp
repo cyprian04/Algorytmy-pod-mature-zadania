@@ -1,36 +1,41 @@
 ﻿#include <iostream>
 using namespace std;
 
-void quickSort(string& napis, int lewyIndex, int prawyIndex) {
+void quickSort(int tab[], int lewyIndex, int prawyIndex, int pivotIndex) {
 
 	if (lewyIndex >= prawyIndex) return;
-
-	int pivot = napis[prawyIndex];
+	
+	int pivot = tab[pivotIndex];
 	int index = lewyIndex;
 	int granica = lewyIndex - 1;
+	swap(tab[pivotIndex], tab[prawyIndex]);
 
 	while(index < prawyIndex) {
-
-		if (napis[index] < pivot) {
+		if (tab[index] < pivot) {
 			granica++;
 			if(granica != index)
-				swap(napis[granica], napis[index]);
+				swap(tab[granica], tab[index]);
 		}
 		index++;
 	}
 
 	granica++;
-	if (granica != prawyIndex)
-		swap(napis[granica], napis[prawyIndex]);
+	if (granica != pivot)
+		swap(tab[granica], tab[prawyIndex]);
 
-	quickSort(napis, lewyIndex, granica -1 );
-	quickSort(napis, granica + 1, prawyIndex);
+	quickSort(tab, lewyIndex, granica - 1, granica - 1);
+	quickSort(tab, granica + 1, prawyIndex, granica + 1);
 }
 
 int main() {
-	string napis = "informatyka";
-	quickSort(napis, 0, int(napis.length() -1));
-	for (auto num : napis)
+	int tab[6] = { 4,5,16,4,8,1 };
+	int pivot = 0;
+	cout << "Podaj pivot: ";
+	cin >> pivot;
+
+	quickSort(tab, 0, 5, pivot);
+
+	for (auto num : tab)
 		cout << num << " ";
 	return 0;
 }
