@@ -1,14 +1,20 @@
 ﻿#include <iostream>
 using namespace std;
 
-void quickSort(int tab[], int lewyIndex, int prawyIndex, int pivotIndex) {
+void quickSort(int tab[], int lewyIndex, int prawyIndex, int pivotIndex = -1) {
 
 	if (lewyIndex >= prawyIndex) return;
 	
-	int pivot = tab[pivotIndex];
+	int pivot;
+	if (pivotIndex != -1) {
+		pivot = tab[pivotIndex];
+		swap(tab[pivotIndex], tab[prawyIndex]);
+	}
+	else
+		 pivot = tab[prawyIndex];
+
 	int index = lewyIndex;
 	int granica = lewyIndex - 1;
-	swap(tab[pivotIndex], tab[prawyIndex]);
 
 	while(index < prawyIndex) {
 		if (tab[index] < pivot) {
@@ -20,20 +26,20 @@ void quickSort(int tab[], int lewyIndex, int prawyIndex, int pivotIndex) {
 	}
 
 	granica++;
-	if (granica != pivot)
+	if (granica != prawyIndex)
 		swap(tab[granica], tab[prawyIndex]);
 
-	quickSort(tab, lewyIndex, granica - 1, granica - 1);
-	quickSort(tab, granica + 1, prawyIndex, granica + 1);
+	quickSort(tab, lewyIndex, granica - 1);
+	quickSort(tab, granica + 1, prawyIndex);
 }
 
 int main() {
-	int tab[6] = { 4,5,16,4,8,1 };
+	int tab[9] = { 8,1,2,3,7,8,1,2,4 };
 	int pivot = 0;
 	cout << "Podaj pivot: ";
 	cin >> pivot;
 
-	quickSort(tab, 0, 5, pivot);
+	quickSort(tab, 0, 8, pivot);
 
 	for (auto num : tab)
 		cout << num << " ";
