@@ -1,19 +1,15 @@
 ﻿#include <iostream>
-#include <random>
 using namespace std;
 
 void quickSort(int tab[], int lewyIndex, int prawyIndex) {
 
 	if (lewyIndex >= prawyIndex) return;
-	
-	std::random_device rd;
-	std::mt19937 rng(rd());
-	std::uniform_int_distribution<int> range(lewyIndex, prawyIndex);
 
-	int pivotIndex = range(rng);
+	int pivotIndex = (lewyIndex + prawyIndex)/2;
 	int pivot = tab[pivotIndex];
 	int index = lewyIndex;
 	int granica = lewyIndex - 1;
+
 	swap(tab[pivotIndex], tab[prawyIndex]);
 
 	while(index < prawyIndex) {
