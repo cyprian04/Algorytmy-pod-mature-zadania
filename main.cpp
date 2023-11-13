@@ -1,36 +1,17 @@
 ﻿#include <iostream>
 using namespace std;
 
-void encryption(int key, string& text) {
-	key %= 26;
-	for (size_t i = 0; i < text.length(); i++)
-		if (text[i] + key <= 'Z')
-			text[i] += key;
-		else
-			text[i] += key - 26;
-}
-
-void decryption(int key, string& text) {
-	key %= 26;
-	for (size_t i = 0; i < text.length(); i++)
-		if (text[i] - key >= 'A')
-			text[i] -= key;
-		else
-			text[i] += -key + 26;
+void encryption(string& text) {
+	for (size_t i = 0; i < text.length() - 1; i+=2)
+		swap(text[i], text[i + 1]);
 }
 
 int main() {
-	string tekst;
-	int key = 0;
+	string text;
+	cout << "Podaj napis: ";
+	cin >> text;
+	encryption(text);
+	cout << "encryptet to: " << text;
 
-	cout << "Podaj tekst: ";
-	cin >> tekst;
-	cout << "Podaj klucz: ";
-	cin >> key;
-
-	encryption(key, tekst);
-	cout <<"encryptet to: "<< tekst;
-	decryption(key, tekst);
-	cout << "\ndecryptet to: " << tekst;
 	return 0;
 }
