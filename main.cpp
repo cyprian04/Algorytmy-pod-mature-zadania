@@ -12,11 +12,8 @@ string encryption(vector<string>& tekst) {
 	return result;
 }
 
-
 int main() {
 	int size = 0;
-	string encryptetString;
-
 	cout << "Podaj ilosc slow w tekstcie: ";
 	cin >> size;
 	vector<string> tekst(size);
@@ -26,7 +23,6 @@ int main() {
 		cin >> tekst[i];
 	}
 
-	encryptetString = encryption(tekst);
-	cout << "encryptet to: " << encryptetString;
+	cout << "encryptet to: " << encryption(tekst);
 	return 0;
 }
