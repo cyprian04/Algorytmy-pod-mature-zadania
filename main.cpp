@@ -1,27 +1,32 @@
 ﻿#include <iostream>
+#include <vector>
 using namespace std;
 
-void encryption(int key, string& text) {
-	key %= 26;
-	for (size_t i = 0; i < text.length(); i++)
-		if (key < 0 && (text[i]+ key) < 'A')
-			text[i] += key + 26;
-		else if (text[i] + key <= 'Z')
-			text[i] += key;
-		else
-			text[i] += key - 26;
+string encryption(vector<string>& tekst) {
+	string result;
+	for (auto element : tekst) {
+		for (size_t j = 0; j < element.length(); j++)
+			result += element[element.length() - 1 - j];
+		result += ' ';
+	}
+	return result;
 }
 
+
 int main() {
-	string tekst;
-	int key = 0;
+	int size = 0;
+	string encryptetString;
 
-	cout << "Podaj tekst: ";
-	cin >> tekst;
-	cout << "Podaj klucz: ";
-	cin >> key;
+	cout << "Podaj ilosc slow w tekstcie: ";
+	cin >> size;
+	vector<string> tekst(size);
 
-	encryption(key, tekst);
-	cout << "encryptet to: " << tekst;
+	for (size_t i = 0; i < size; i++) {
+		cout << "Podaj slowo nr" << i + 1<<" :";
+		cin >> tekst[i];
+	}
+
+	encryptetString = encryption(tekst);
+	cout << "encryptet to: " << encryptetString;
 	return 0;
 }
