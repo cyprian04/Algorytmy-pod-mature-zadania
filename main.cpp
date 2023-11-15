@@ -12,17 +12,6 @@ void encryption(int key, string& text) {
 			text[i] += key - 26;
 }
 
-void decryption(int key, string& text) {
-	key %= 26;
-	for (size_t i = 0; i < text.length(); i++)
-		if(key < 0 && (text[i]- key) > 'Z')
-			text[i] -= key + 26;
-		else if (text[i] - key >= 'A')
-			text[i] -= key;
-		else
-			text[i] += -key + 26;
-}
-
 int main() {
 	string tekst;
 	int key = 0;
@@ -34,7 +23,5 @@ int main() {
 
 	encryption(key, tekst);
 	cout << "encryptet to: " << tekst;
-	decryption(key, tekst);
-	cout << "\ndecryptet to: " << tekst;
 	return 0;
 }
