@@ -1,28 +1,24 @@
 ﻿#include <iostream>
-#include <vector>
+#include <sstream>
 using namespace std;
 
-string encryption(vector<string>& tekst) {
+string encryption(istringstream &tekst) {
 	string result;
-	for (auto element : tekst) {
-		for (size_t j = 0; j < element.length(); j++)
-			result += element[element.length() - 1 - j];
+	string temp;
+	while (tekst >> temp) {
+		for (size_t j = 0; j < temp.length(); j++)
+			result += temp[temp.length() - 1 - j];
 		result += ' ';
 	}
 	return result;
 }
 
 int main() {
-	int size = 0;
-	cout << "Podaj ilosc slow w tekstcie: ";
-	cin >> size;
-	vector<string> tekst(size);
+	string tekst;
+	cout << "Podaj tekst: ";
+	getline(cin, tekst);
+	istringstream stream(tekst);
 
-	for (size_t i = 0; i < size; i++) {
-		cout << "Podaj slowo nr" << i + 1<<" :";
-		cin >> tekst[i];
-	}
-
-	cout << "encryptet to: " << encryption(tekst);
+	cout << "encryptet to: " << encryption(stream);
 	return 0;
 }
