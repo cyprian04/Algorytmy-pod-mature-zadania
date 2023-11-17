@@ -1,37 +1,35 @@
 ﻿#include <iostream>
-#include <fstream>
 using namespace std;
 
-string decryption(const string text, const string key) {
-	int index = 0;
-	string result;
-	for (size_t i = 0; i < text.length(); i++, index++) {
-		if (index == key.length())
-			index = 0;
-		if (text[i] - (key[index] - 64) >= 'A')
-			result += text[i] - (key[index] - 64);
-		else
-			result += text[i] - (key[index] - 64) + 26;
+void encryption(string& text, int key) {
+	for (size_t i = 0; i < text.length() - 2; i += 3) {
+		swap(text[i], text[i + 2]);
+		text[i] += 10;
+		text[i + 2] += 10;
 	}
-	return result;
+}
+
+void decryption(string& text, int key) {
+	for (size_t i = 0; i < text.length() - 2; i += 3) {
+		swap(text[i], text[i + 2]);
+		text[i] -= 10;
+		text[i + 2] -= 10;
+	}
 }
 
 int main() {
-	ifstream stringsFile("sz.txt");
-	ifstream keysFile("klucze2.txt");
-	ofstream saveFile("wynik4b.txt");
-	string tempString;
-	string tempKey;
+	int key = 0;
+	string text;
 
-	saveFile << "b)\n";
-	while (!stringsFile.eof()) {
-		stringsFile >> tempString;
-		keysFile >> tempKey;
-		saveFile << decryption(tempString, tempKey) << "\n";
-	}
+	cout << "Podaj napis: ";
+	cin >> text;
+	cout << "Podaj klucz: ";
+	cin >> key;
 
-	stringsFile.close();
-	keysFile.close();
-	saveFile.close();
+	encryption(text,key);
+	cout << "encryptet to: " << text;
+	decryption(text,key);
+	cout << "\ndecryptet to: " << text;
+
 	return 0;
 }
