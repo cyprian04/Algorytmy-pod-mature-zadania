@@ -16,20 +16,6 @@ string encryption(const string text, const string key ) {
 	return result;
 }
 
-string decryption(const string text, const string key) {
-	int index = 0;
-	string result;
-	for (size_t i = 0; i < text.length(); i++, index++) {
-		if (index == key.length())
-			index = 0;
-		if (text[i] - (key[index] - 64) >= 'A')
-			result += text[i] - (key[index] - 64);
-		else
-			result += text[i] - (key[index] - 64) + 26;
-	}
-	return result;
-}
-
 int main() {
 	ifstream stringsFile("tj.txt");
 	ifstream keysFile("klucze1.txt");
@@ -41,8 +27,7 @@ int main() {
 	while (!stringsFile.eof()) {
 		stringsFile >> tempString;
 		keysFile >> tempKey;
-		cout << tempString <<" encryptet to: " << encryption(tempString, tempKey) <<"\n decryptet to : "<<decryption(encryption(tempString, tempKey),tempKey)<< "\n";
-
+		saveFile << encryption(tempString, tempKey) << "\n";
 	}
 
 	stringsFile.close();
