@@ -1,2 +1,1 @@
-Liczba hase³ o parzystej liczbie znaków: 105
-Liczba hase³ o nieparzystej liczbie znaków: 95
+a)

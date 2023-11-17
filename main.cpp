@@ -1,24 +1,52 @@
 ﻿#include <iostream>
-#include <sstream>
+#include <fstream>
 using namespace std;
 
-string encryption(istringstream &tekst) {
+string encryption(const string text, const string key ) {
+	int index = 0;
 	string result;
-	string temp;
-	while (tekst >> temp) {
-		for (size_t j = 0; j < temp.length(); j++)
-			result += temp[temp.length() - 1 - j];
-		result += ' ';
+	for (size_t i = 0; i < text.length(); i++, index++) {
+		if (index == key.length())
+			index = 0;
+		if (text[i] + (key[index] - 64) <= 'Z')
+			result += text[i] + (key[index] - 64);
+		else
+			result += text[i] + (key[index] - 64) - 26;
+	}
+	return result;
+}
+
+string decryption(const string text, const string key) {
+	int index = 0;
+	string result;
+	for (size_t i = 0; i < text.length(); i++, index++) {
+		if (index == key.length())
+			index = 0;
+		if (text[i] - (key[index] - 64) >= 'A')
+			result += text[i] - (key[index] - 64);
+		else
+			result += text[i] - (key[index] - 64) + 26;
 	}
 	return result;
 }
 
 int main() {
-	string tekst;
-	cout << "Podaj tekst: ";
-	getline(cin, tekst);
-	istringstream stream(tekst);
+	ifstream stringsFile("tj.txt");
+	ifstream keysFile("klucze1.txt");
+	ofstream saveFile("wynik4a.txt");
+	string tempString;
+	string tempKey;
 
-	cout << "encryptet to: " << encryption(stream);
+	saveFile << "a)\n";
+	while (!stringsFile.eof()) {
+		stringsFile >> tempString;
+		keysFile >> tempKey;
+		cout << tempString <<" encryptet to: " << encryption(tempString, tempKey) <<"\n decryptet to : "<<decryption(encryption(tempString, tempKey),tempKey)<< "\n";
+
+	}
+
+	stringsFile.close();
+	keysFile.close();
+	saveFile.close();
 	return 0;
 }
