@@ -2,8 +2,8 @@
 #include <map>
 using namespace std;
 
-string encryptToMorse(string& text) {
-    string morseCode;
+string encryptToMorse(string text) {
+    string result;
     map<char, string> morse = {
         {'A', ".-"}, {'B', "-..."}, {'C', "-.-."},
         {'D', "-.."}, {'E', "."}, {'F', "..-."},
@@ -17,8 +17,8 @@ string encryptToMorse(string& text) {
     };
 
     for (char sign : text)
-          morseCode += morse[sign] + " ";
-    return morseCode;
+          result += morse[sign] + " ";
+    return result;
 }
 
 int main() {
