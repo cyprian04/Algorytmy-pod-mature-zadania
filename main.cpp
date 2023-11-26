@@ -16,9 +16,8 @@ string encryptToMorse(string& text) {
         {'Y', "-.--"}, {'Z', "--.."}
     };
 
-    for (char ch : text)
-          morseCode += morse[ch] + " ";
-
+    for (char sign : text)
+          morseCode += morse[sign] + " ";
     return morseCode;
 }
 
@@ -27,7 +26,7 @@ int main() {
     cout << "Insert text: ";
     cin >> text;
     string morseCode = encryptToMorse(text);
-    cout << "Encryptet to: " << morseCode << std::endl;
+    cout << "Encryptet to: " << morseCode <<endl;
 
     return 0;
 }
