@@ -1,46 +1,68 @@
 ﻿#include <iostream>
-#include <stack>
+#include <string>
 using namespace std;
 
-struct Move {
-    int disk;
-    char A, C, B;
-};
+string encrypt(string text, int key) {
+    string result;
+    string tekstBezSpacji;
+    for (char znak : text)
+        if (znak !=' ')
+            tekstBezSpacji += znak;
 
-string hanoi(int n) {
-    stack<Move> moves;
-    Move initialMove = { n, 'A', 'C', 'B' };
-    moves.push(initialMove);
+    int colN = key / 10;
+    int steps = key % 10;
+    char** macierz = new char*[colN];
+    for (int i = 0; i < colN; i++)
+        macierz[i] = new char[colN];
 
-    string result = "";
+    int index = 0;
+    for (int i = 0; i < colN; ++i)
+        for (int j = 0; j < colN; ++j) 
+            macierz[i][j] = tekstBezSpacji[index++];
+    
+    for (int i = 0; i < colN; ++i) {
+        for (int j = 0; j < colN; ++j)
+            cout << macierz[i][j] << " ";
+        cout << endl;
+    }
 
-    while (!moves.empty()) {
-        Move currentMove = moves.top();
-        moves.pop();
-
-        if (currentMove.disk == 1) {
-            result += currentMove.A;
-            result += currentMove.C;
-        }
-        else {
-            Move move1 = { currentMove.disk - 1, currentMove.B, currentMove.C, currentMove.A };
-            moves.push(move1);
-
-            Move move2 = { 1, currentMove.A, currentMove.C, currentMove.B };
-            moves.push(move2);
-
-            Move move3 = { currentMove.disk - 1, currentMove.A, currentMove.B, currentMove.C };
-            moves.push(move3);
+    index = 0;
+    int maxRowIndex = colN - 1;
+    for (int i = 0; i < colN; ++i) {
+        for (int j = 0; j < steps; ++j, index++){
+            if (index == maxRowIndex)
+                index = 0;
+            swap(macierz[i][index], macierz[i][index + 1]);
         }
     }
+
+    cout << endl;
+    for (int i = 0; i < colN; ++i) {
+        for (int j = 0; j < colN; ++j)
+            cout << macierz[i][j] << " ";
+        cout << endl;
+    }
+
+    for (int i = 0; i < colN; ++i)
+        for (int j = 0; j < colN; ++j)
+            result+= macierz[j][i];
+      
+    for (int i = 0; i < colN; i++)
+        delete[] macierz[i];
+    delete[] macierz;
+
     return result;
 }
 
 int main() {
-    int n;
-    cout << "Podaj ilosc: ";
-    cin >> n;
-    cout << hanoi(n) << endl;
+    string text;
+    int key;
 
+    cout << "Podaj tekst: ";
+    getline(cin, text);
+    cout << "Podaj klucz: ";
+    cin >> key;
+
+    cout << encrypt(text,key);
     return 0;
 }
