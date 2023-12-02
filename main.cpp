@@ -1,18 +1,46 @@
 ﻿#include <iostream>
+#include <stack>
 using namespace std;
 
-string hanoi(int n, char a, char b, char c) {
-	if (n == 0) return "";
+struct Move {
+    int disk;
+    char A, C, B;
+};
 
-	string Left = hanoi(n - 1, a, c, b);
-	string Right = hanoi(n - 1 , b, a, c);
-	return Left + a + c + Right;
+string hanoi(int n) {
+    stack<Move> moves;
+    Move initialMove = { n, 'A', 'C', 'B' };
+    moves.push(initialMove);
+
+    string result = "";
+
+    while (!moves.empty()) {
+        Move currentMove = moves.top();
+        moves.pop();
+
+        if (currentMove.disk == 1) {
+            result += currentMove.A;
+            result += currentMove.C;
+        }
+        else {
+            Move move1 = { currentMove.disk - 1, currentMove.B, currentMove.C, currentMove.A };
+            moves.push(move1);
+
+            Move move2 = { 1, currentMove.A, currentMove.C, currentMove.B };
+            moves.push(move2);
+
+            Move move3 = { currentMove.disk - 1, currentMove.A, currentMove.B, currentMove.C };
+            moves.push(move3);
+        }
+    }
+    return result;
 }
 
 int main() {
-	int num;
-	cout << "Podaj ilosc: ";
-	cin >> num;
-	cout << hanoi(num, 'A', 'B', 'C');
-	return 0;
+    int n;
+    cout << "Podaj ilosc: ";
+    cin >> n;
+    cout << hanoi(n) << endl;
+
+    return 0;
 }
