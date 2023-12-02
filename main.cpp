@@ -53,7 +53,7 @@ string encrypt(string text, int key) {
 
     return result;
 }
-
+//WAŻNE
 int main() {
     string text;
     int key;
