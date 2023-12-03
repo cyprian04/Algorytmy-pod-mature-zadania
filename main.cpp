@@ -30,10 +30,11 @@ string encrypt(string text, int key) {
     int maxRowIndex = colN - 1;
     for (int i = 0; i < colN; ++i) {
         for (int j = 0; j < steps; ++j, index++){
-            if (index == maxRowIndex)
-                index = 0;
+            if (index == maxRowIndex) 
+               index = 0;
             swap(macierz[i][index], macierz[i][index + 1]);
         }
+        index = 0;
     }
 
     cout << endl;
@@ -83,6 +84,7 @@ string decrypt(string text, int key) {
                 index = maxRowIndex;
             swap(macierz[i][index], macierz[i][index - 1]);
         }
+        index = 0;
     }
 
     cout << endl;
