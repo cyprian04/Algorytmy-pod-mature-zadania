@@ -1,22 +1,29 @@
 ﻿#include <iostream>
-using namespace std;
+#include <fstream>
 
-int main() {
-	int dayNum;
-	//dla odmiany użycie '\n' ,czyli znak nowej lini aby nie opróżniać bufforu//
-	cout << "Podaj numer dnia tygodnia:\n";
-	cout <<"1. Poniedzialek\n2. Wtorek\n3. Sroda\n4. Czwartek\n5. Piatek\n6. Sobota\n7. Niedziela\n";
-	cout <<"Opcja: ";
-	cin >> dayNum;
+bool isPalindrom(const std::string text_in) {
+	for (int i = 0; i < text_in.length(); i++)
+		if (text_in[i] != text_in[text_in.length() -1-  i])
+			return false;
+	return true;
+}
 
-	if (dayNum >= 1 && dayNum <=5) {
-		cout <<"DO PRACY";
-	}
-	else if(dayNum == 6 || dayNum == 7) {
-		cout <<"MAM WOLNE";
-	}
-	else {
-		cout <<"Podano dzien z poza zakresu :(";
-	}
+int main(){
+
+	std::string text;
+	std::fstream file;
+	std::fstream saveFile;
+	file.open("dane.txt");
+	saveFile.open("odp1.txt");
+
+	while (!file.eof()) {
+		file >> text;
+	
+		if (isPalindrom(text))
+			 saveFile << text << std::endl;
+	}	
+
+	file.close();
+	saveFile.close();
 	return 0;
 }
