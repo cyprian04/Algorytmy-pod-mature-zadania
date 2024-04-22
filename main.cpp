@@ -1,30 +1,22 @@
-﻿#include <iostream>
-#include <vector>
-
-bool isPalindrom(const std::string text_in) {
-	for (int i = 0; i < text_in.length(); i++)
-		if (text_in[i] != text_in[text_in.length() - 1 - i])
-			return false;
-	return true;
-}
+﻿#include <map>
+#include <string>
+#include <iostream>
+using namespace std;
 
 int main(){
-	int vecSize = 0;
-	std::vector<std::string> napisy;
+	map<char, int> signs;
+	string text;
+	getline(cin, text);
 
-	std::cout << "The number of strings: ";
-	std::cin >> vecSize;
-	for (int i = 0; i < vecSize; i++){
-		std::string text;
-		std::cin >> text;
-		if(isPalindrom(text))
-			napisy.push_back(text);
-	}
+	for (auto &s : text)
+		if (s != ' ') {
+			if (s >= 'A' && s <= 'Z')
+				s += 'a' - 'A';
+			signs[s]++;
+		}
 
-	std::cout << '\n';
-	for (const auto& c : napisy)
-		std::cout << c <<'\n';
+	for (const auto &s : signs)
+		cout << s.first << " wystapilo: " << s.second<<'\n';
 
 	return 0;
 }
-
