@@ -1,29 +1,30 @@
 ﻿#include <iostream>
-#include <fstream>
 
-bool isPalindrom(const std::string text_in) {
-	for (int i = 0; i < text_in.length(); i++)
-		if (text_in[i] != text_in[text_in.length() -1-  i])
+bool isPrime(int num) {
+	for (int i = 2; i < num ; i++)
+		if (num % i == 0)
 			return false;
-	return true;
+	return true && (num != 1);
 }
 
 int main(){
+	int size = 0;
+	int* arr = nullptr;
 
-	std::string text;
-	std::fstream file;
-	std::fstream saveFile;
-	file.open("dane.txt");
-	saveFile.open("odp1.txt");
+	std::cout << "Podaj ilosc liczb do sprawdzenia: ";
+	std::cin >> size;
+	arr = new int[size];
 
-	while (!file.eof()) {
-		file >> text;
+	for (int i = 0; i < size; i++){
+		std::cout << "Podaj liczbe " << i + 1 << ":";
+		std::cin >> arr[i];
+	}
 	
-		if (isPalindrom(text))
-			 saveFile << text << std::endl;
-	}	
-
-	file.close();
-	saveFile.close();
+	for (int i = 0; i < size; i++){
+		if (isPrime(arr[i]))
+			std::cout << arr[i] << "Jest liczba pierwsza"<<std::endl;
+		else
+			std::cout << arr[i] << "NIE Jest liczba pierwsza"<<std::endl;
+	}
 	return 0;
 }
