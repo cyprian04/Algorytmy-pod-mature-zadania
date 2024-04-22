@@ -1,37 +1,29 @@
 ﻿#include <iostream>
-#include <cmath>
+#include <fstream>
 using namespace std;
 
-int main(){
-	int shiftCount = 0;
-	int currentShift = 0;
-	int size = 0;
-	int* arr = nullptr;
+bool isPalindrom(const string text) {
+    for (int i = 0; i < text.length(); i++)
+        if (text[i] != text[text.length() - 1 - i])
+            return false;
 
-	cout << "Podaj ilosc przesuniec: ";
-	cin >> shiftCount;
-	cout << "Podaj rozmiar tablicy: ";
-	cin >> size;
-	arr = new int[size];
+    return true;
+}
 
-	for (int i = 0; i < size; i++) {
-		cout << "Podaj liczbe do tablicy: ";
-		cin >> arr[i];
-	}
+int main() {
+    string text;
+    fstream file;
+    ofstream saveFile; // ofstream utworzy nowy plik jeśli ten nie istnieje. sam fstream nic nie utworzy!!!
+    file.open("dane.txt"); // open otwiera plik
+    saveFile.open("odp1.txt");
 
-	for (int i = size-1; i > 0 && currentShift < shiftCount;){
-		swap(arr[i -1], arr[i]);
-		if (i == 1) {
-			i = size-1;
-			currentShift++;
-			continue;
-		}
-		i--;
-	}
+    while (!file.eof()) { /// dopóki nie dojdzie do końca pliku
+        file >> text;
+        if (isPalindrom(text))
+            saveFile << text << endl;
+    }
 
-	for (int i = 0; i < size; i++)
-		cout << arr[i] << ", ";
-
-	delete[] arr;
-	return 0;
+    file.close(); // close zamyka
+    saveFile.close();
+    return 0;
 }

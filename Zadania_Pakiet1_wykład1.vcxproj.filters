@@ -21,6 +21,5 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="dane.txt" />
-    <Text Include="odp1.txt" />
   </ItemGroup>
 </Project>
