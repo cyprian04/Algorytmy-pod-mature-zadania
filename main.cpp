@@ -1,27 +1,24 @@
 ﻿#include <iostream>
+#include <map>
 #include <fstream>
 using namespace std;
-
-bool isIncreasing(const string text) {
-    for (int i = 0; i <text.length()-1; i++)
-        if(text[i] >= text[i+1])
-            return false;
-    return true;
-}
 
 int main() { 
  
     string text;
-    ifstream file;
-    ofstream saveFile;   
-    file.open("cyfry.txt");
-    saveFile.open("odp3.txt");
+    fstream file;
+    ofstream saveFile;
+    file.open("napisy.txt");
+    saveFile.open("odp5.txt");
+    map<int, int> liczbyK;
 
     while (!file.eof()) {
         file >> text;
-        if (isIncreasing(text))
-            saveFile << text << endl;
+        liczbyK[text.length()]++;
     }
+
+    for (const auto c : liczbyK)
+        saveFile << " wyrazów o długości k = " << c.first << " jest ich: " << c.second << endl;
 
     file.close();
     saveFile.close();
