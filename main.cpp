@@ -2,42 +2,26 @@
 #include <fstream>
 using namespace std;
 
-int sumOfTheNumDigits(const string text) {
-    int sum = 0;
-    for (size_t i = 0; i < text.length(); i++)
-        sum += int(text[i] - 48);
- 
-    return sum;
+bool isIncreasing(const string text) {
+    for (int i = 0; i <text.length()-1; i++)
+        if(text[i] >= text[i+1])
+            return false;
+    return true;
 }
 
 int main() { 
-    string maxNum;
-    string minNum;
-    int maxNumSum = 0;
-    int minNumSum = 81;   
-
+ 
     string text;
     ifstream file;
-    ofstream saveFile;
-   
+    ofstream saveFile;   
     file.open("cyfry.txt");
-    saveFile.open("odp2.txt");
+    saveFile.open("odp3.txt");
 
     while (!file.eof()) {
         file >> text;
-        int currentNumSum = sumOfTheNumDigits(text);
-
-        if (currentNumSum < minNumSum) {
-            minNumSum = currentNumSum;
-            minNum = text;
-        }
-        if (currentNumSum > maxNumSum) {
-            maxNumSum = currentNumSum;
-            maxNum = text;
-        }
+        if (isIncreasing(text))
+            saveFile << text << endl;
     }
-
-    saveFile << "b)\n" << "min: " << minNum << "\nmax: " << maxNum;
 
     file.close();
     saveFile.close();
