@@ -5,19 +5,18 @@ int main() {
     const int rowsCount = 5;
     const int columnCount = 5;
     int tab[rowsCount][columnCount];
+    int tabhelp[columnCount] = {0};
     int num = 1;
-    int maxNum = 0, minNum = 0;
 
     for (int i = 0; i < rowsCount; i++) {
+        int colNumSum = 0;
         for (int j = 0; j < columnCount; j++) {
             tab[i][j] = num++;
-            if (tab[i][j] > maxNum)
-                maxNum = tab[i][j];
-            else if (tab[i][j] < minNum)
-                minNum = tab[i][j];
+            tabhelp[j] += tab[i][j];
         }
     }
-    cout << "min: " << minNum << " max: " << maxNum;
 
+    for (const auto& n : tabhelp)
+        cout << n << endl;
     return 0;
  }
