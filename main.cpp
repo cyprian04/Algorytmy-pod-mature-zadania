@@ -2,32 +2,15 @@
 #include <vector>
 using namespace std;
 
-bool isPrime(int num) {
-    for (int i = 2; i < num; i++)
-        if (num % i == 0)
-            return false;
-    return true && num != 1;
-}
+int recursiveSum(vector<int>nums, int position){
+    if (position == 0)
+        return nums[0];
 
-void swapPrimeValues(vector<int> &vec1, vector<int> &vec2) {
-    for (int i = 0; i < vec1.size(); i++)
-        if (isPrime(vec1[i]))
-            swap(vec1[i], vec2[i]);
+    return nums[position] + recursiveSum(nums, position - 1);
 }
 
 int main() { 
-    int num = 0;
-    int digit = 0;
-    vector<int>nums1 = { 1,2,17,4 };
-    vector<int>nums2 = { 5,6,7,8 };
-
-    swapPrimeValues(nums1, nums2);
-
-    for (const auto& n : nums1)
-        cout << n << " ";
-    cout << "\n\n";
-    for (const auto& n : nums2)
-        cout << n << " ";
-    
+    vector<int>nums = { 1,2,17,4 };
+    cout << recursiveSum(nums, int(nums.size()-1));
     return 0;
  }
