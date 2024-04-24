@@ -2,12 +2,11 @@
 using namespace std;
 
 int main() { 
-    const int rowsCount = 3;           // 0 1 2     2 5 8  0[0][0] => [2][0]
-    const int columnCount = 3;         // 3 4 5 =>  1 4 7  1[0][1] => [1][0]
-    int tab[rowsCount][columnCount];   // 6 7 8     0 3 6  2[0][2] => [0][0]
-                                                        
+    const int rowsCount = 5;          
+    const int columnCount = 3;         
+    int tab[rowsCount][columnCount];                                     
     int num = 0; 
-    int tabPomocnicza[rowsCount][columnCount];
+    int tabPomocnicza[columnCount][rowsCount] = {0};
 
     for (int i = 0; i < rowsCount; i++) {
         for (int j = 0; j < columnCount; j++) {
@@ -18,12 +17,12 @@ int main() {
     }
     cout <<"\n\n";
 
-    for (int i = 0; i < rowsCount; i++)
-        for (int j = 0; j < columnCount; j++)
-            tabPomocnicza[rowsCount-1-j][i] = tab[i][j];
-
-    for (int i = 0; i < rowsCount; i++) {
-        for (int j = 0; j < columnCount; j++) {
+    for (int i = 0; i < columnCount; i++)
+        for (int j = 0; j < rowsCount; j++)
+            tabPomocnicza[i][j] = tab[j][i];
+    
+    for (int i = 0; i < columnCount; i++) {
+        for (int j = 0; j < rowsCount; j++) {
             cout << tabPomocnicza[i][j] << " ";
         }
         cout << endl;
