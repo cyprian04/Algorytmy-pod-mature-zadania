@@ -1,31 +1,25 @@
 ﻿#include <iostream>
-#include <vector>
-#include <algorithm>
 using namespace std;
 
-int silnia(int num) {
-    int result = 1;
-    for (int i = 1; i < num + 1; i++)
-        result *= i;
-    return result;
-}
+int nwd(int a, int b) {
+    int change = 0;
 
-vector<int> silniaN(const int n){
-    vector<int> result;
-    for (int i = 1; i < n + 1; i++)
-        result.emplace_back(silnia(i));
-    return result;
-}
+    while (b > 0) {
+        change = a % b;
+        a = b;
+        b = change;
+    }
 
+    return a;
+}
 
 int main() { 
-    int n = 0;
-    cout << "Podaj silnie: ";
-    cin >> n;
-    vector<int>nums =silniaN(n);
-
-    for (const auto& n : nums)
-        cout << n << " ";
+    int num1 = 0, num2 = 0;
+    cout << "Podaj liczbe a: ";
+    cin >> num1;
+    cout << "Podaj liczbe b: ";
+    cin >> num2;
+    cout << "NWD liczby " << num1 << " i liczby " << num2 << " wynosi: " << nwd(num1, num2);
 
     return 0;
  }
