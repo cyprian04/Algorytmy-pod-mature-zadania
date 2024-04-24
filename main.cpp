@@ -1,21 +1,25 @@
 ﻿#include <iostream>
+#include <vector>
 using namespace std;
 
+
+
 int main() { 
-    const int rowsCount = 5;          
-    const int columnCount = 5;         
-    int tab[rowsCount][columnCount] = {0};
-    int num = 5;
+    int num = 0;
+    int digit = 0;
+    vector<int>digits;
+    cout << "Podaj liczbe: ";
+    cin >> num;
 
-    for (int i = 0; i < rowsCount; i++, num*=2)
-        tab[i][columnCount - 1 - i] = num;
-
-
-    for (int i = 0; i < rowsCount; i++) {
-        for (int j = 0; j < columnCount; j++) {
-            cout << tab[i][j] << " ";
-        }
-        cout << endl;
+    while (num != 0){
+        digit = num % 10;
+        digits.emplace_back(digit);
+        num -= digit;
+        num /= 10;
     }
+
+    for (size_t i = 0; i < digits.size(); i++)
+        cout << digits[digits.size() - 1 - i] << " ";
+    
     return 0;
  }
