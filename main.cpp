@@ -3,26 +3,28 @@
 #include <algorithm>
 using namespace std;
 
-vector<int> filteredSum(vector<int> vec) {
-    vector<int> resultVec;
-
-    int maxVal = *max_element(vec.begin(), vec.end());
-    int minVal = *min_element(vec.begin(), vec.end());
-    int threshold = (maxVal + minVal) / 2;
-
-    for (int i = 0; i < vec.size(); i++) {
-        if (vec[i] < threshold)
-            resultVec.emplace_back(vec[i]);
-    }
-
-    return resultVec;
+int silnia(int num) {
+    int result = 1;
+    for (int i = 1; i < num + 1; i++)
+        result *= i;
+    return result;
 }
 
-int main() { 
-    vector<int>nums = { 1,2,3,4,5,6,7,8,9};
-    vector<int>filtered =  filteredSum(nums);
+vector<int> silniaN(const int n){
+    vector<int> result;
+    for (int i = 1; i < n + 1; i++)
+        result.emplace_back(silnia(i));
+    return result;
+}
 
-    for (const auto& n : filtered)
+
+int main() { 
+    int n = 0;
+    cout << "Podaj silnie: ";
+    cin >> n;
+    vector<int>nums =silniaN(n);
+
+    for (const auto& n : nums)
         cout << n << " ";
 
     return 0;
