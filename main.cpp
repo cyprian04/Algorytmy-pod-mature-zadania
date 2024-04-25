@@ -2,46 +2,24 @@
 #include <map>
 using namespace std;
 
-string toUpper(string text) {
-    string result;
+bool isPatternNested(const string text, const string pattern) {
+    int pos = 0;
     for (size_t i = 0; i < text.length(); i++) {
-        if (text[i] >= 'a' && text[i] <= 'z')
-            result += (text[i] - 32);
-        else
-            result += text[i];
+        if (text[i] == pattern[pos])
+            pos++;
+        else {
+            i -= pos;
+            pos = 0;
+        }
     }
-    return result;
-}
-
-bool areTheyAnagrams(const string t1, const string t2) {
-    if (t1.length() != t2.length()) return false;
-
-    string temp1 = toUpper(t1);
-    string temp2 = toUpper(t2);
-    map<char, int> signs1;
-    map<char, int> signs2;
-
-    for (const auto& n : temp1)
-        signs1[n]++;
-    for (const auto& n : temp2)
-        signs2[n]++;
-
-    for (char sign = 'A'; sign < 'Z'; sign++)
-        if (signs1.find(sign) != signs1.end() && signs2.find(sign) != signs2.end() && signs1.find(sign)->second != signs2.find(sign)->second)
-            return false;
-    return true;
+    return pos == pattern.length();
 }
 
 int main() { 
-    string text1, text2;
-    cout << "Podaj napis1: ";
-    cin >> text1;
-    cout << "\nPodaj napis2: ";
-    cin >> text2;
-
-    if (areTheyAnagrams(text1, text2))
-        cout << "They are anagrams";
+    if (isPatternNested("CypriarianasnCypgjsandasjdnCypu", "Cypu"))
+        cout << "pattern is nested inside text";
     else
-        cout <<"They are not anagrams";
+        cout << "pattern is not nested";
+
     return 0;
  }
