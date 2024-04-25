@@ -1,25 +1,23 @@
 ﻿#include <iostream>
-#include <map>
 using namespace std;
 
-bool isPatternNested(const string text, const string pattern) {
-    int pos = 0;
-    for (size_t i = 0; i < text.length(); i++) {
-        if (text[i] == pattern[pos])
-            pos++;
-        else {
-            i -= pos;
-            pos = 0;
-        }
-    }
-    return pos == pattern.length();
+bool isNumGreat(int num) {
+    int dividers = 0;
+
+    for (int i = 1; i < num; i++)
+        if (num % i == 0)
+            dividers += i;
+    return dividers == num;
 }
 
 int main() { 
-    if (isPatternNested("CypriarianasnCypgjsandasjdnCypu", "Cypu"))
-        cout << "pattern is nested inside text";
+    int n = 0;
+    cout << "Podaj liczbe: ";
+    cin >> n;
+    if(isNumGreat(n))
+        cout << "Jest doskonala";
     else
-        cout << "pattern is not nested";
+        cout << "Nie jest doskonala";
 
     return 0;
  }
