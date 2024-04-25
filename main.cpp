@@ -2,10 +2,9 @@
 using namespace std;
 
 int silnia(int n) {
-    int result = 1;
-    for (int i = 1; i < n + 1; i++)
-        result *= i;
-    return result;
+    if (n > 0)
+        return n * silnia(n - 1);
+    return 1;
 }
 
 int main() { 
