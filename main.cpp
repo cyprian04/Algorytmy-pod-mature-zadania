@@ -1,25 +1,18 @@
 ﻿#include <iostream>
 using namespace std;
 
-int nwd(int a, int b) {
-    if (b > 0) 
-        return nwd(b, a % b); // a % b to reszta z dzielenia podmieniamy a na b, b na reszte z dzielenia
-    return a;
-}
-
-int nww(int a, int b) {
-    return (a * b)/nwd(a, b);
+int silnia(int n) {
+    int result = 1;
+    for (int i = 1; i < n + 1; i++)
+        result *= i;
+    return result;
 }
 
 int main() { 
-    int num1 = 0, num2 = 0;
-
-    cout << "Podaj liczbe a: ";
-    cin >> num1;
-    cout << "Podaj liczbe b: ";
-    cin >> num2;
-    cout << "NWD liczby " << num1 << " i liczby " << num2 << " wynosi: " << nwd(num1, num2) <<endl;
-    cout << "NWW liczby " << num1 << " i liczby " << num2 << " wynosi: " << nww(num1, num2);
+    int n = 0;
+    cout << "Podaj silnie: ";
+    cin >> n;
+    cout << "silnia z: " << n << " wynosi: " << silnia(n);
 
     return 0;
  }
