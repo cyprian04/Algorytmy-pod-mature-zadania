@@ -1,13 +1,11 @@
 ﻿#include <iostream>
-#include <cmath>
 using namespace std;
 
 int charToDigit(char sign) {
-    int num = 0;
     if (sign <= '9')
-        return num = int(sign - 48);
+        return int(sign - 48);
     else 
-        return num = int(sign - 55);
+        return int(sign - 55);
 }
 
 int convertAnyToDec(string num, int system) {
@@ -17,7 +15,26 @@ int convertAnyToDec(string num, int system) {
     return result;
 }
 
+char digitToChar(int num) {
+    if (num <= 9)
+        return char(num + 48);
+    else
+        return char(num + 55);
+}
+
+string convertDecToAny(int num, int system) {
+    string result;
+    while (num > 0) {
+        result += digitToChar(num % system);
+        num /= system;
+    }
+    return  {result.rbegin(), result.rend()};
+}
+
+
 int main() { 
-    cout << convertAnyToDec("101010101010", 2);
+    cout << convertAnyToDec("101010101010", 2) << endl;
+    cout << convertDecToAny(3214, 16);
+
     return 0;
  }
