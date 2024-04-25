@@ -1,23 +1,15 @@
 ﻿#include <iostream>
 using namespace std;
 
-bool isNumGreat(int num) {
-    int dividers = 0;
-
-    for (int i = 1; i < num; i++)
-        if (num % i == 0)
-            dividers += i;
-    return dividers == num;
+int horner(int nums[], int degree, int x) {
+    if (degree > 0)
+        return x * horner(nums, degree-1, x) + nums[degree] ;
+              // x *( x * (x * (x * nums[0]) + nums[1]) + nums[2]) + nums[3]
+    return nums[0];
 }
 
 int main() { 
-    int n = 0;
-    cout << "Podaj liczbe: ";
-    cin >> n;
-    if(isNumGreat(n))
-        cout << "Jest doskonala";
-    else
-        cout << "Nie jest doskonala";
-
+    int tab[4] = { 2,1,3,9 };
+    cout << horner(tab, 3, 10);
     return 0;
  }
