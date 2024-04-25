@@ -1,11 +1,12 @@
 ﻿#include <iostream>
+#include <cmath>
 using namespace std;
 
 int horner(int nums[], int degree, int x) {
-    if (degree > 0)
-        return x * horner(nums, degree-1, x) + nums[degree] ;
-              // x *( x * (x * (x * nums[0]) + nums[1]) + nums[2]) + nums[3]
-    return nums[0];
+    int result = 0;
+    for (int i = 0; i < degree + 1; i++)
+        result += nums[i] * int(pow(x, degree - i));
+    return result;
 }
 
 int main() { 
