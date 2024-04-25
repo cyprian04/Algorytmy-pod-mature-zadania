@@ -1,29 +1,23 @@
 ﻿#include <iostream>
+#include <cmath>
 using namespace std;
 
-int nwd(int a, int b) {
-    int change = 0;
-
-    while (b > 0) {
-        change = a % b;
-        a = b;
-        b = change;
-    }
-    return a;
+int charToDigit(char sign) {
+    int num = 0;
+    if (sign <= '9')
+        return num = int(sign - 48);
+    else 
+        return num = int(sign - 55);
 }
-int nww(int a, int b) {
-    return (a * b) / nwd(a, b);
+
+int convertAnyToDec(string num, int system) {
+    int result = 0;
+    for (int i = 0; i < num.size(); i++)
+        result += charToDigit(num[num.size() -1 -i]) * int(pow(system,i));
+    return result;
 }
 
 int main() { 
-    int num1 = 0, num2 = 0;
-    cout << "Podaj liczbe a: ";
-    cin >> num1;
-    cout << "Podaj liczbe b: ";
-    cin >> num2;
-    cout << "NWD liczby " << num1 << " i liczby " << num2 << " wynosi: " << nwd(num1, num2) <<endl;
-    cout << "NWW liczby " << num1 << " i liczby " << num2 << " wynosi: " << nww(num1, num2);
-
-
+    cout << convertAnyToDec("101010101010", 2);
     return 0;
  }
