@@ -3,8 +3,12 @@ using namespace std;
 
 int nwd(int a, int b) {
     if (b > 0) 
-        return nwd(b, a % b); // a % b to reszta z dzielenia, podmieniamy a na b, b na reszte z dzielenia
+        return nwd(b, a % b); // a % b to reszta z dzielenia podmieniamy a na b, b na reszte z dzielenia
     return a;
+}
+
+int nww(int a, int b) {
+    return (a * b)/nwd(a, b);
 }
 
 int main() { 
@@ -14,7 +18,8 @@ int main() {
     cin >> num1;
     cout << "Podaj liczbe b: ";
     cin >> num2;
-    cout << "NWD liczby " << num1 << " i liczby " << num2 << " wynosi: " << nwd(num1, num2);
+    cout << "NWD liczby " << num1 << " i liczby " << num2 << " wynosi: " << nwd(num1, num2) <<endl;
+    cout << "NWW liczby " << num1 << " i liczby " << num2 << " wynosi: " << nww(num1, num2);
 
     return 0;
  }
