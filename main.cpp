@@ -1,35 +1,59 @@
 ﻿#include <iostream>
-#include <algorithm>
+#include <fstream>
+#include <vector>
 using namespace std;
 
-void bucketSortNegPos(int tab[], int size) {
-    int maxElement = *max_element(tab, tab + size);
-    int minElement = *min_element(tab, tab + size);
-    int newSize = maxElement + 1 - minElement;
+string toBigger(string text) {
+    for (size_t i = 0; i < text.length(); i++)
+        if (text[i] >= 'a' && text[i] <= 'z')
+            text[i] -= 32;
+    return text;
+}
+                                    
+string selectionSort(string text) { 
+    for (size_t i = 0; i < text.length() - 1; i++){
+        size_t index = i + 1;
+        for (size_t j = i; j < text.length(); j++){
+            if (text[index] > text[j])
+                index = j;
+        }
+        swap(text[i], text[index]);
+    }
+    return text;
+}
 
-    int* pomocnicza = new int[newSize]{ 0 };
-    int index = 0;
-    for (int k = 0; k < size; k++)
-        pomocnicza[tab[k] - minElement]++;
+bool areAnagrams(vector<string> strings) {
+    if (strings[0].length() != strings[1].length() || strings[1].length() != strings[2].length() ||
+        strings[2].length() != strings[3].length() || strings[3].length() != strings[4].length())
+        return false;
 
-    for (int i = 0; i < newSize; i++)
-        if (pomocnicza[i] != 0)
-            for (int j = 0; j < pomocnicza[i]; j++)
-                tab[index++] = i + minElement;
+    vector<string> filtered(5);
+    for (size_t i = 0; i < filtered.size(); i++)
+        filtered[i] = selectionSort(toBigger(strings[i]));
 
-    delete[] pomocnicza;
+    return filtered[0] == filtered[1] && filtered[1] == filtered[2] &&
+        filtered[2] == filtered[3] && filtered[3] == filtered[4];
 }
 
 int main() {
-    const int size = 10;
-    int tab[size] = { -54, 26, -93, 17, 77, 31, -44, 96, 99, 26};
-    for (const auto& n : tab)
-        cout << n << " ";
+    fstream file;
+    ofstream saveFile;
+    file.open("anagram.txt");
+    saveFile.open("odp69.txt");
 
-    cout << "\n\n";
-    bucketSortNegPos(tab, size);
+    while (!file.eof()){
+        vector<string> strings(5);
+        for (size_t i = 0; i < strings.size(); i++)
+            file >> strings[i];
 
-    for (const auto& n : tab)
-        cout << n << " ";
+        if (areAnagrams(strings)) {
+            for (size_t i = 0; i < strings.size(); i++)
+                saveFile << strings[i] << " ";
+            saveFile << endl;
+        }
+    }
+
+    file.close();
+    saveFile.close();
     return 0;
  }
