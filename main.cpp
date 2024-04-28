@@ -2,15 +2,19 @@
 #include <cmath>
 using namespace std;
 
-int horner(int nums[], int degree, int x) {
-    int result = 0;
-    for (int i = 0; i < degree + 1; i++)
-        result += nums[i] * int(pow(x, degree - i));
-    return result;
+void bubbleSort(int tab[], int size) {
+    for (int i = 0; i < size - 1; i++)
+        for (int j = 0; j < size - 1; j++)
+            if (tab[j] < tab[j + 1])
+                swap(tab[j], tab[j + 1]);
 }
 
-int main() { 
-    int tab[4] = { 2,1,3,9 };
-    cout << horner(tab, 3, 10);
+int main() {
+    const int size = 5;
+    int tab[5] = { 8,20,10,15,2 };
+    bubbleSort(tab, size);
+    
+    for (const auto& n : tab)
+        cout << n << " ";
     return 0;
  }
