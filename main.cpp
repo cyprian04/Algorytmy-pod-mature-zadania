@@ -12,8 +12,8 @@ string toBigger(string text) {
                                     
 string selectionSort(string text) { 
     for (size_t i = 0; i < text.length() - 1; i++){
-        size_t index = i + 1;
-        for (size_t j = i; j < text.length(); j++){
+        size_t index = i;
+        for (size_t j = i + 1; j < text.length(); j++){
             if (text[index] > text[j])
                 index = j;
         }
