@@ -1,59 +1,42 @@
 ﻿#include <iostream>
-#include <fstream>
-#include <vector>
 using namespace std;
 
-string toBigger(string text) {
-    for (size_t i = 0; i < text.length(); i++)
-        if (text[i] >= 'a' && text[i] <= 'z')
-            text[i] -= 32;
-    return text;
-}
-                                    
-string selectionSort(string text) { 
-    for (size_t i = 0; i < text.length() - 1; i++){
-        size_t index = i;
-        for (size_t j = i + 1; j < text.length(); j++){
-            if (text[index] > text[j])
-                index = j;
-        }
-        swap(text[i], text[index]);
+void merge(int tab[], int lewyIndex, int pivot, int prawyIndex, int pomocnicza[]) {
+    for (int i = lewyIndex; i <= prawyIndex; i++)
+        pomocnicza[i] = tab[i];
+
+    int indexLeft = lewyIndex;
+    int indexRight = pivot + 1;
+    int index = lewyIndex;
+
+    while(indexLeft <= pivot && indexRight <= prawyIndex){
+        if (pomocnicza[indexLeft] <= pomocnicza[indexRight])
+            tab[index++] = pomocnicza[indexLeft++];
+        else 
+            tab[index++] = pomocnicza[indexRight++];
     }
-    return text;
+
+    while (indexLeft <= pivot)
+        tab[index++] = pomocnicza[indexLeft++];
 }
 
-bool areAnagrams(vector<string> strings) {
-    if (strings[0].length() != strings[1].length() || strings[1].length() != strings[2].length() ||
-        strings[2].length() != strings[3].length() || strings[3].length() != strings[4].length())
-        return false;
-
-    vector<string> filtered(5);
-    for (size_t i = 0; i < filtered.size(); i++)
-        filtered[i] = selectionSort(toBigger(strings[i]));
-
-    return filtered[0] == filtered[1] && filtered[1] == filtered[2] &&
-        filtered[2] == filtered[3] && filtered[3] == filtered[4];
+void mergeSort(int tab[], int lewyIndex, int prawyIndex, int pomocnicza[]) {
+    if (lewyIndex != prawyIndex) {    
+        int pivot = (lewyIndex + prawyIndex) / 2;
+        mergeSort(tab, lewyIndex, pivot, pomocnicza);
+        mergeSort(tab, pivot+1, prawyIndex, pomocnicza);
+        merge(tab, lewyIndex, pivot, prawyIndex, pomocnicza);
+    }
 }
 
 int main() {
-    fstream file;
-    ofstream saveFile;
-    file.open("anagram.txt");
-    saveFile.open("odp69.txt");
+    int tab[8] = { 5, 8, 7, 2, 3, 2, 6, 8 };
+    int lewyIndex = 0;
+    int prawyIndex = 7;
+    int pomocnicznaTablica[8] {0};
+    mergeSort(tab, lewyIndex, prawyIndex, pomocnicznaTablica);
 
-    while (!file.eof()){
-        vector<string> strings(5);
-        for (size_t i = 0; i < strings.size(); i++)
-            file >> strings[i];
-
-        if (areAnagrams(strings)) {
-            for (size_t i = 0; i < strings.size(); i++)
-                saveFile << strings[i] << " ";
-            saveFile << endl;
-        }
-    }
-
-    file.close();
-    saveFile.close();
+    for (const auto& n: tab)
+        cout << n << " ";
     return 0;
  }
