@@ -30,13 +30,19 @@ void mergeSort(int tab[], int lewyIndex, int prawyIndex, int pomocnicza[]) {
 }
 
 int main() {
-    int tab[8] = { 5, 8, 7, 2, 3, 2, 6, 8 };
+    int matrix[3][4] = { {4, 5, 6, 4},  
+                         {3, 3, 2, 7},  
+                         {1, 1, 1, 1} };
     int lewyIndex = 0;
-    int prawyIndex = 7;
-    int pomocnicznaTablica[8] {0};
-    mergeSort(tab, lewyIndex, prawyIndex, pomocnicznaTablica);
+    int prawyIndex = 3;
+    int pomocnicznaTablica[4] {0};
+    for (int i = 0; i < 3; i++)
+        mergeSort(matrix[i], lewyIndex, prawyIndex, pomocnicznaTablica); // przekazywanie wskaźnika na pierwszy wiersz 2D tablicy (więc przkaże się 1 wymiarowa tablica)
 
-    for (const auto& n: tab)
-        cout << n << " ";
+    for (const auto& n : matrix) {
+        for (const auto& k : n)
+            cout << k << " ";
+        cout << endl;
+    }
     return 0;
  }
