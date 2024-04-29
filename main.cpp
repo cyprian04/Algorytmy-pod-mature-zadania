@@ -4,8 +4,10 @@ using namespace std;
 void quickSort(int tab[], int leftIndex, int rightIndex) {
 
     if (rightIndex > leftIndex) {
+        cout << "f(" << leftIndex << "," << rightIndex << ")" << endl;
         int pivot = tab[rightIndex];
         int threshold = leftIndex - 1;
+        int index = leftIndex;
 
         while (leftIndex != rightIndex) {
             if (tab[leftIndex] < pivot)
@@ -14,7 +16,7 @@ void quickSort(int tab[], int leftIndex, int rightIndex) {
         }
         swap(tab[++threshold], tab[rightIndex]);
 
-        quickSort(tab, 0, threshold - 1);
+        quickSort(tab, index, threshold - 1);
         quickSort(tab, threshold + 1, rightIndex);
     }
 }
