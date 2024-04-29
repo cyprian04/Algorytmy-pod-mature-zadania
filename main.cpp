@@ -1,31 +1,31 @@
 ﻿#include <iostream>
 using namespace std;
 
-void merge(int tab[], int lewyIndex, int pivot, int prawyIndex, int pomocnicza[]) {
+void merge(int tab[3][4], int column, int lewyIndex, int pivot, int prawyIndex, int pomocnicza[3][4]) {
     for (int i = lewyIndex; i <= prawyIndex; i++)
-        pomocnicza[i] = tab[i];
+        pomocnicza[i][column] = tab[i][column];
 
     int indexLeft = lewyIndex;
     int indexRight = pivot + 1;
     int index = lewyIndex;
 
     while(indexLeft <= pivot && indexRight <= prawyIndex){
-        if (pomocnicza[indexLeft] <= pomocnicza[indexRight])
-            tab[index++] = pomocnicza[indexLeft++];
+        if (pomocnicza[indexLeft][column] <= pomocnicza[indexRight][column])
+            tab[index++][column] = pomocnicza[indexLeft++][column];
         else 
-            tab[index++] = pomocnicza[indexRight++];
+            tab[index++][column] = pomocnicza[indexRight++][column];
     }
 
     while (indexLeft <= pivot)
-        tab[index++] = pomocnicza[indexLeft++];
+        tab[index++][column] = pomocnicza[indexLeft++][column];
 }
 
-void mergeSort(int tab[], int lewyIndex, int prawyIndex, int pomocnicza[]) {
+void mergeSort(int tab[3][4], int column, int lewyIndex, int prawyIndex, int pomocnicza[3][4]) {
     if (lewyIndex != prawyIndex) {    
         int pivot = (lewyIndex + prawyIndex) / 2;
-        mergeSort(tab, lewyIndex, pivot, pomocnicza);
-        mergeSort(tab, pivot+1, prawyIndex, pomocnicza);
-        merge(tab, lewyIndex, pivot, prawyIndex, pomocnicza);
+        mergeSort(tab, column, lewyIndex, pivot, pomocnicza);
+        mergeSort(tab, column, pivot+1, prawyIndex, pomocnicza);
+        merge(tab, column, lewyIndex, pivot, prawyIndex, pomocnicza);
     }
 }
 
@@ -34,10 +34,11 @@ int main() {
                          {3, 3, 2, 7},  
                          {1, 1, 1, 1} };
     int lewyIndex = 0;
-    int prawyIndex = 3;
-    int pomocnicznaTablica[4] {0};
-    for (int i = 0; i < 3; i++)
-        mergeSort(matrix[i], lewyIndex, prawyIndex, pomocnicznaTablica); // przekazywanie wskaźnika na pierwszy wiersz 2D tablicy (więc przkaże się 1 wymiarowa tablica)
+    int prawyIndex = 2;
+    int pomocnicznaTablica[3][4] {0};
+
+    for (int i = 0; i < 4; i++)
+        mergeSort(matrix, i, lewyIndex, prawyIndex, pomocnicznaTablica);
 
     for (const auto& n : matrix) {
         for (const auto& k : n)
