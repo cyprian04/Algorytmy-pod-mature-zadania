@@ -2,24 +2,18 @@
 #include <fstream>
 using namespace std;
 
-void CheckAndFixLength(string& key, const string text) {
-	if (key.length() < text.length()) {
-		int transitions = int(text.length() - key.length());
-		for (int i = 0; 0 < transitions; transitions--){
-				key += key[i++];
-				if (i == key.length()) i = 0;
-		}
-	}
-}
-
 string encryption(string key, string& text) {
-	for (size_t i = 0; i < text.length(); i++){
-		if (text[i] + (key[i] - 64)<= 'Z')
-			text[i] += (key[i] - 64);
+	string result;
+	size_t index = 0;
+	for (size_t i = 0; i < text.length(); i++, index++){
+		if (index = key.length())
+			index = 0;
+		if (text[i] + (key[index] - 64)<= 'Z')
+			result += text[i] + (key[index] - 64);
 		else
-			text[i] += (key[i] - 64) - 26;
+			result += text[i] + (key[index] - 64) - 26;
 	}
-	return text;
+	return result;
 }
 
 int main() {
@@ -35,7 +29,6 @@ int main() {
 	while (!file.eof()){
 		file >> text;
 		keys >> key;
-		CheckAndFixLength(key, text);
 		saveFile << encryption(key, text) <<endl;
 	}
 
