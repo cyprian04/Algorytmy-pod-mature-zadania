@@ -1,40 +1,30 @@
 ﻿#include <iostream>
+#include <sstream>
 using namespace std;
 
-void encryption(int key, string& text) {
-	key %= 26;
-	for (size_t i = 0; i < text.length(); i++)
-		if (key < 0 && (text[i] + key) < 'A')
-			text[i] += 26 + key;
-		else if (text[i] + key <= 'Z')
-			text[i] += key;
-		else
-			text[i] += key - 26;
-}
-
-void decryption(int key, string& text) {
-	key %= 26;
-	for (size_t i = 0; i < text.length(); i++)
-		if (key < 0 && (text[i] - key) > 'Z')
-			text[i] += -26 - key;
-		else if (text[i] - key >= 'A')
-			text[i] -= key;
-		else
-			text[i] += -key + 26;
+string encryptionAndDecryptionBackwards(istringstream& text) {
+	string result;
+	string temp;
+	while (text >> temp) {
+		for (int i = 0; i < temp.length(); i++){
+			result += temp[temp.length() - 1 - i];
+		}
+		result += ' ';
+	}
+	return result;
 }
 
 int main() {
 	string tekst;
-	int key = 0;
-
 	cout << "Podaj tekst: ";
-	cin >> tekst;
-	cout << "Podaj klucz: ";
-	cin >> key;
 
-	encryption(key, tekst);
+	getline(cin, tekst);
+	istringstream stream1(tekst);
+	tekst = encryptionAndDecryptionBackwards(stream1);
 	cout << "encryptet to: " << tekst;
-	decryption(key, tekst);
+
+	istringstream stream2(tekst);
+	tekst = encryptionAndDecryptionBackwards(stream2);
 	cout << "\ndecryptet to: " << tekst;
 	return 0;
 }
