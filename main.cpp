@@ -1,127 +1,51 @@
 ﻿#include <iostream>
+#include < fstream>
+#include <cmath>
 using namespace std;
 
-void encryptionFence(string& text, int key) {
-    int rows = key;
-    const int columns = int(text.length());
-    char** tab = new char* [rows];
-    for (int i = 0; i < rows; i++)
-        tab[i] = new char[columns];
+int binToDec(string temp) {
+    int result = 0;
 
-    for (int i = 0; i < rows; i++)
-        for (int j = 0; j < columns; j++)
-            tab[i][j] = '*';
-
-    bool goingDown = true;
-    int index = 0;
-    for (int i = 0; index != text.length();) {
-        for (int j = 0; j < columns; j++) {
-            tab[i][j] = text[index++];
-
-            if (goingDown && i != rows - 1) i++;
-            else if (goingDown && i == rows - 1) {
-                goingDown = false;
-                i--;
-            }
-            else if (!goingDown && i != 0) i--;
-            else if (!goingDown && i == 0) {
-                goingDown = true;
-                i++;
-            }
-        }
-    }
-    index = 0;
-    for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < columns; j++) {
-            cout << tab[i][j] << " ";
-            if (tab[i][j] != '*')
-                text[index++] = tab[i][j];
-        }
-        cout << endl;
-    }
-
-    for (int i = 0; i < rows; i++)
-        delete[] tab[i];
-    delete[] tab;
+    for (size_t i = 0; i < temp.length(); i++)
+        result += int(temp[temp.length() - 1 - i] - 48)* pow(2, i);
+    return result;
 }
 
-void decryptionFence(string& text, int key) {
-    int rows = key;
-    const int columns = int(text.length());
-    char** tab = new char* [rows];
-    for (int i = 0; i < rows; i++)
-        tab[i] = new char[columns];
-
-    for (int i = 0; i < rows; i++)
-        for (int j = 0; j < columns; j++)
-            tab[i][j] = '*';
-
-    int index = 0;
-    bool goingDown = true;
-    for (int i = 0; index != text.length();) {
-        for (int j = 0; j < columns; j++, index++) {
-            tab[i][j] = 'X';
-
-            if (goingDown && i != rows - 1) i++;
-            else if (goingDown && i == rows - 1) {
-                goingDown = false;
-                i--;
-            }
-            else if (!goingDown && i != 0) i--;
-            else if (!goingDown && i == 0) {
-                goingDown = true;
-                i++;
-            }
+int BlocksCounter(string num) {
+    char type = num[0];
+    int counter = 1;
+    for (size_t i = 0; i < num.length(); i++)
+        if(type != num[i]){
+            counter++;
+            type = num[i];
         }
-    }
-
-    index = 0;
-    for (int i = 0; i < rows; i++)
-        for (int j = 0; j < columns; j++)
-            if (tab[i][j] == 'X')
-                 tab[i][j] = text[index++];
-
-    for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < columns; j++)
-            cout << tab[i][j] << " ";
-        cout << endl;
-    }
-
-    index = 0;
-    for (int i = 0; index != text.length();) {
-        for (int j = 0; j < columns; j++) {
-            text[index++] = tab[i][j];
-
-            if (goingDown && i != rows - 1) i++;
-            else if (goingDown && i == rows - 1) {
-                goingDown = false;
-                i--;
-            }
-            else if (!goingDown && i != 0) i--;
-            else if (!goingDown && i == 0) {
-                goingDown = true;
-                i++;
-            }
-        }
-    }
-
-    for (int i = 0; i < rows; i++)
-        delete[] tab[i];
-    delete[] tab;
+    return counter;
 }
 
 int main() {
-    int key = 2;
-    string text;
-    cout << "Enter text: ";
-    cin >> text;
-    cout << "Enter key: ";
-    cin >> key;
+    fstream file;
+    ofstream saveFile;
+    file.open("bin.txt");
+    saveFile.open("wynikMatura.txt");
 
-    encryptionFence(text, key);
-    cout << "Encrypted to: " << text << endl;
-    decryptionFence(text, key);
-    cout << "Decrypted to: " << text;
+    int wynik = 0;
+    string temp;
 
+    int maxVal = 0;
+    string currentMaxNum = "0";
+
+    while (!file.eof()){
+        file >> temp;
+        if (BlocksCounter(temp) <= 2)
+            wynik++;
+        if (binToDec(temp) > binToDec(currentMaxNum))
+            currentMaxNum = temp;
+    }
+
+    saveFile << "2.2) " << wynik << endl;
+    saveFile << "2.3) " << currentMaxNum << endl;
+
+    file.close();
+    saveFile.close();
     return 0;
 }
