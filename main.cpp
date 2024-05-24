@@ -1,5 +1,5 @@
 ﻿#include <iostream>
-#include < fstream>
+#include <fstream>
 #include <cmath>
 using namespace std;
 
@@ -7,7 +7,7 @@ int binToDec(string temp) {
     int result = 0;
 
     for (size_t i = 0; i < temp.length(); i++)
-        result += int(temp[temp.length() - 1 - i] - 48)* pow(2, i);
+        result += int(temp[temp.length() - 1 - i]) - 48* pow(2, i);
     return result;
 }
 
